@@ -1,0 +1,209 @@
+.r_card {
+ 
+    background-color: white;
+    margin: 10px 15px 12px 0px;
+    box-shadow: 1px 1px 15px -5px #333;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.3s ease;
+}
+.r_car {
+    width: 100%;
+margin: 0 auto;
+padding: 0;
+overflow: hidden;
+background: #fff;
+border: .5px solid #dfe2e4;
+border-radius: 8px;
+cursor: pointer;
+transition: box-shadow .15s;
+}
+
+.r_ca{
+    height: 250px;
+    position: relative;
+display: flex;
+align-items: center;
+}
+
+.imagecontainer{
+    position: relative;
+    flex: 1 1;
+    min-width: 325px;
+    height: 100%;
+    overflow: hidden;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+
+.r_card:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 10px -5px #333;
+}
+.r_card:hover .text_info {
+    opacity: 1 !important;
+}
+.r_card .r_card_header {
+
+    /* background: url("http://www.2oceansvibe.com/wp-content/uploads/2011/07/man4.jpg") 50% 0% no-repeat; */
+    width: 100%;
+height: 100%;
+background-repeat: no-repeat;
+background-position: 50%;
+background-size: cover;
+transition: transform .15s;
+}
+.r_card .r_card_header:hover {
+    opacity: 1;
+    background-size: 102%;
+}
+.r_card .r_card_header:before, .r_card .r_card_header:after {
+    content: 'apartment';
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    height: 26px;
+    background-color: #ea6423;
+    position: relative;
+    top: 7px;
+    left: 7px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px -5px #333;
+    z-index: 1;
+}
+.r_card .r_card_header:after {
+    content: 'sale';
+    margin-left: 7px;
+    background-color: #00b2a4;
+}
+.r_card .r_card_header a img {
+    opacity: 0.9;
+    height: 190px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transition: all 0.3s ease;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.r_card .r_card_content {
+    width: 100%;
+    height: 40%;
+    padding: 20px 20px 0px;
+}
+.r_card .r_card_content i {
+    color: #333;
+    margin-right: 5px;
+}
+.r_card .r_card_content .adress {
+    font-size: 15px;
+    font-weight: 500;
+}
+.r_card .r_card_content .text_info {
+    height: 55px;
+    width: 100%;
+    overflow: hidden;
+    opacity: 0.7;
+    font-size: 12px;
+    margin: 15px 0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+.r_card .r_card_content .text_info .text_info_shade {
+    content: '';
+    position: absolute;
+    height: 19px;
+    width: 95%;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(transparent, white);
+    z-index: 2;
+}
+.r_card .price_info {
+    position: relative;
+    border-top: 1px solid #ddd;
+    font-size: 14px;
+}
+.r_card .price_info .price_w {
+    width: 50%;
+    height: 20px;
+    position: absolute;
+    left: 0;
+    text-align: left;
+    margin: 13px 20px;
+    color: #333;
+    font-weight: 600;
+}
+.r_card .price_info .price_v {
+    width: 50%;
+    height: 20px;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    margin: 13px 20px;
+    color: #333;
+    font-weight: 600;
+}
+.r_card .r_card_footer {
+    background-color: #333;
+    padding: 0 20px;
+}
+.r_card .r_card_footer i {
+    color: #aaa;
+    display: inline-block;
+    margin-right: 5px;
+}
+.r_card .r_card_footer .icon {
+    margin: 10px auto;
+}
+.r_card .r_card_footer .area {
+   
+    color: white;
+    font-weight: 600;
+    display: inline-block;
+    text-align: left;
+}
+.r_card .r_card_footer .room {
+    width: calc(6% - 2px);
+    color: white;
+    font-weight: 600;
+    display: inline-block;
+    text-align: center;
+}
+.r_card .r_card_footer .bath {
+    width: calc(4.% - 2px);
+    color: white;
+    font-weight: 600;
+    display: inline-block;
+    text-align: right;
+}
+.active {
+    height: 130px !important;
+    opacity: 1 !important;
+    font-size: 13px !important;
+}
+.active_shade {
+    background: none !important;
+}
+
+
+.contentcontainer{
+display: flex;
+flex: 5 5;
+flex-direction: column;
+justify-content: space-between;
+max-width: 65%;
+height: 100%;
+padding-left: .4px;
+border-radius: 0 0 8px 8px;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}

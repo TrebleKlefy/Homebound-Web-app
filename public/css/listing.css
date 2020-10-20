@@ -1,0 +1,157 @@
+/* Blocks */
+.site-blocks-cover {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    margin-top: -25px; }
+    .site-blocks-cover.overlay {
+      position: relative; }
+      .site-blocks-cover.overlay:before {
+        position: absolute;
+        content: "";
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        background: rgba(0, 0, 0, 0.4); }
+    .site-blocks-cover, .site-blocks-cover .row {
+      min-height: 600px;
+      height: calc(100vh); }
+    .site-blocks-cover.inner-page-cover, .site-blocks-cover.inner-page-cover .row {
+      min-height: 600px;
+      height: calc(30vh); }
+    .site-blocks-cover .sub-text {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: .2em; }
+    .site-blocks-cover h1 {
+      font-weight: 900;
+      color: #fff;
+      font-size: 4rem;
+      font-weight: normal;
+      letter-spacing: .1em;
+      text-transform: uppercase; }
+    .site-blocks-cover p {
+      color: #fff;
+      font-size: 1.5rem;
+      line-height: 1.5; }
+    .site-blocks-cover .intro-text {
+      font-size: 16px;
+      line-height: 1.5; }
+    .site-blocks-cover.subscribe h2 {
+      font-size: 20px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 300;
+      color: #fff; }
+    .site-blocks-cover.subscribe p {
+      font-size: 1rem !important;
+      font-weight: 100; }
+
+
+
+.row{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+/* search bar */
+/* Styles for wrapping the search box */
+
+
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+
+
+/* end here */
+
+/*this iphone 6/7/8*/
+@media only screen and (min-width:411px ) and (max-width: 420px) {
+
+    .site-blocks-cover h1 {
+        font-weight: 900;
+        color: #fff;
+        font-size: 3rem;
+        font-weight: normal;
+        letter-spacing: .1em;
+        text-transform: uppercase; }
+      .site-blocks-cover p {
+        color: #fff;
+        font-size: 1rem;
+        line-height: 1.5; }
+
+ 
+
+
+}
+
+/* red Moto G4 and S5 */
+@media only screen and (min-width:300px ) and (max-width: 410px) {
+
+    .site-blocks-cover h1 {
+        font-weight: 900;
+        color: #fff;
+        font-size: 2.5rem;
+        font-weight: normal;
+        letter-spacing: .1em;
+        text-transform: uppercase; }
+      .site-blocks-cover p {
+        color: #fff;
+        font-size: 1rem;
+        line-height: 1.5; }
+   
+
+}
+
+/*Pink ipad   idk yet*/
+@media only screen and (min-width:730px )and (max-width:823px) {
+
+    .site-blocks-cover h1 {
+        font-weight: 900;
+        color: #fff;
+        font-size: 2.5rem;
+        font-weight: normal;
+        letter-spacing: .1em;
+        text-transform: uppercase; }
+      .site-blocks-cover p {
+        color: #fff;
+        font-size: 1rem;
+        line-height: 1.5; }
+   
+
+}
+
+/*ipad pro*/
+@media only screen and (min-width:824px )and (max-width:1200px) {
+
+    .site-blocks-cover h1 {
+        font-weight: 900;
+        color: #fff;
+        font-size: 2.5rem;
+        font-weight: normal;
+        letter-spacing: .1em;
+        text-transform: uppercase; }
+      .site-blocks-cover p {
+        color: #fff;
+        font-size: 1rem;
+        line-height: 1.5; }
+
+}
