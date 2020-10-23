@@ -7,6 +7,9 @@ use App\contacts;
 use App\advertisment;
 use App\Ad_Images;
 use App\Images;
+use App\payment;
+use Notification;
+use App\Notifications\InvoicePaid;
 
 use App\Photo;
 use File;
@@ -24,6 +27,7 @@ class ListingController extends Controller
     public function index(){
         //display only the approved adds
         $advertisments = Advertisment::with('user')->where('approved',true)->paginate(8);
+        
         foreach($advertisments as $ads){
             $images = Ad_Images::where('advertisment_id',$ads->id)->get();
         }
@@ -83,8 +87,11 @@ class ListingController extends Controller
     }
 
     public function payment()
-    {
-        return response()->json(['status'=>"success"]);
+    {       
+        payment::create($this->validateRequest());
+       $this->sendNotification();
+        $pay_id = DB::getPdo()->lastInsertId(); 
+        return response()->json(['status'=>"success",'pay_id'=>$pay_id]);
     }
 
     // public function createForadmin(){
@@ -161,7 +168,7 @@ try{
     'amenity' => implode(",", $req->amenity),
     ]);
     // $advertisments->save();
-    $ad_id = DB::getPdo()->lastInsertId(); ;
+    $ad_id = DB::getPdo()->lastInsertId(); 
 
     }catch (\Exception $e) {
         return response()->json(['status'=>'exception', 'msg'=>$e->getMessage()]);
@@ -432,19 +439,51 @@ try{
     }
 
     
+    public function payment_edit(Request $req,$id){
+        $this->validate($req, [
+            'advertisment_id' => 'integer',
+        ]);
+
+        payment::where('id', '=', $id)->update([
+            'advertvertisment_id' => $req->advertisment_id,
+        ]);
+        
+        return response()->json(['status'=>"success"]);
+    }
+
+
+    public function sendNotification()
+    {
+        $user = auth()->user();
+  
+        $details = [
+            'greeting' => 'Hi Artisan',
+            'body' => 'This is my first notification from ItSolutionStuff.com',
+            'thanks' => 'Thank you for using ItSolutionStuff.com tuto!',
+            'amount' => '500',
+            'payment_method' => 'card',
+            'name'=>'John Doe',
+            'card_number' => '111111111111',
+            'actionText' => 'View My Site',
+            'actionURL' => url('/'),
+            'order_id' => 101
+        ];
+  
+        Notification::send($user, new InvoicePaid($details));
+   
+       
+    }
+
+
     private function validateRequest(){
         return request()->validate([
-            // 'first_name' => 'nullable|min:3',
-            // 'email' => 'nullable|email',
-            // 'last_name' =>'nullable',
-            // 'phone_number' =>'nullable',
-            // 'phone_number2' =>'nullable',
-            // 'address'=>'nullable',
-            // 'zip_code'=>'nullable',
-            // 'city'=>'nullable',
-            // 'state'=>'nullable',
-            // 'time'=>'nullable',
-            // 'summary'=>'nullable'
+            'full_name' => 'required|min:5',
+            'card_number' => 'required',
+            'ccv' =>'required',
+            'amount' =>'required',
+            'experation_date' =>'required',
+            'user_id'=>'required',
+           
         ]);
     }
 }

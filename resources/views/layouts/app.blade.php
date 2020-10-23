@@ -103,6 +103,93 @@
                       <a class="nav-link" href="/profile/{{Auth::user()->id}}">{{ __('Profile') }}</a>
                     </li>
 
+                    {{-- <li class="dropdown nav-item">
+                      <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <div class="notification d-none d-lg-block d-xl-block"></div>
+                        <i class="fas fa-inbox"></i>
+                        <p class="d-lg-none">
+                          Notifications
+                        </p>
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
+                        <li class="nav-link"><a href="#" class="nav-item dropdown-item">Mike John responded to your email</a></li>
+                        <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">You have 5 more tasks</a></li>
+                        <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Your friend Michael is in town</a></li>
+                        <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Another notification</a></li>
+                        <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Another one</a></li>
+                      </ul>
+                    </li> --}}
+
+                    <div class="dropdown" style="float: right; padding: 13px">
+                      <a href="#" onclick="return false;" role="button" data-toggle="dropdown" id="dropdownMenu1" data-target="#" style="float: left" aria-expanded="true">
+                          <i class="fas fa-bell text-white" style="font-size: 18px; float: left; color: black">
+                          </i>
+                      </a>
+                      <span class="badge badge-danger">  {{Auth::user()->unreadNotifications->count()}}</span>
+                      <ul class="dropdown-menu dropdown-menu-left pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                          <li role="presentation">
+                              <a href="#" class="text-center">Notifications</a>
+                          </li>
+                          <ul class="timeline timeline-icons timeline-sm" style="margin:10px;width:210px">
+                            @if (Auth::user()->unreadNotifications->slice(0,5) != null && Auth::user()->unreadNotifications->count() >0 )
+                            <div class="list-group ">
+                                @foreach (Auth::user()->unreadNotifications as $notification)
+                                
+                                <a href="/inbox/message/read/{{$notification->id}}" class="list-group-item list-group-item-action border-0 p-0 m-0">
+                                <div class="d-flex bd-highlight m-0">
+                                  <div class="p-3 bd-highlight">
+                                    
+                                      <h6> Payment made</h6>
+                                     
+                                  </div>
+                                  <div class="p-2 bd-highlight"><small>{{\Carbon\Carbon::createFromTimeStamp(strtotime($notification->created_at))->diffForHumans()}}</small></div>
+                                </div>
+                                </a>
+                                @endforeach
+                              </div>
+                
+                
+                            @else
+                            <div class="text-center">
+                              <img src="{{asset('svg/undraw_mail_box_kd5i.svg')}}" class="img-fluid" style="max-width:200px" alt="" srcset="">
+                            <p class="p-3">You have no notfications</p>
+                            </div>
+                            @endif
+                          
+                      </ul>
+                  </div>
+
+                    
+                    
+                    {{-- <li class="dropdown nav-item">
+                      <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <div class="photo">
+                        <img src="/uploads/images/{{auth::user()->profile_photo}}" alt="Profile Photo">
+                        </div>
+                        <b class="caret d-none d-lg-block d-xl-block"></b>
+                        <p class="d-lg-none">
+                          Log out
+                        </p>
+                      </a>
+                      <ul class="dropdown-menu dropdown-navbar">
+                        <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Profile</a></li>
+                        <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Settings</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li class="nav-link">
+                          <div class="" aria-labelledby="navbarDropdown">
+                              <a class=" nav-item dropdown-item" href="{{ route('logout') }}"
+                                 onclick="event.preventDefault();
+                                               document.getElementById('logout-form').submit();">
+                                  {{ __('Logout') }}
+                              </a>
+  
+                              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                  @csrf
+                              </form>
+                          </div></li>
+                      </ul>
+                    </li> --}}
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->first_name }} <span class="caret"></span>
@@ -217,7 +304,7 @@
     <div class="modal-content form-elegant text-white">
       <!--Header-->
       <div class="modal-header text-center">
-        <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong> <img src="./img/LogoMakr.png" class="img-fluid w-25" alt="logo"></strong></h3>
+        <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong> <img src="/img/LogoMakr.png" class="img-fluid w-25" alt="logo"></strong></h3>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>

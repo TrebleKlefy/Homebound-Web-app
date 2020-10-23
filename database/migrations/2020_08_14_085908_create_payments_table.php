@@ -16,12 +16,13 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->string('ccv');
-            $table->string('full_name');
-            $table->string('card_number');
-            $table->double("amount");
-            $table->date('experation_date');
-            $table->integer('user_id');
+            $table->string('ccv')->nullable();
+            $table->string('full_name')->nullable();
+            $table->string('card_number')->nullable();
+            $table->double("amount")->nullable();
+            $table->date('experation_date')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->integer('advertvertisment_id')->nullable();
            
            
         });

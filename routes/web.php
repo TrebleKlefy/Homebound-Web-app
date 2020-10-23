@@ -46,8 +46,19 @@ Route::post('/listings/approved','ListingController@approve_ad')->name('listings
 Route::post('/listings/filtered', 'ListingController@filter')->name('listings.filter');
 
 Route::post('/listings/payment',['middleware' => 'auth','uses' => 'ListingController@payment'])->name('listings.payment');
+Route::patch('/listings/{id}/paymentupdate',['middleware' => 'auth','uses' => 'ListingController@payment_edit'])->name('listings.paymentupdate');
 
 Route::post('/imageapi','ListingController@imageApi')->name('listings.image');
+
+
+Route::get('notification/{nid}/{uid}', 'NotificationController@ReadNotification')->name("get.notification");
+Route::get('delete/notification/{nid}/', 'NotificationController@DeleteNotification')->name("delete.notification");
+
+Route::get('inbox/message/', 'NotificationController@mailbox')->name("view.messages");
+Route::get('inbox/message/read/{nid}', 'NotificationController@readInbox')->name("delete.notification");
+
+
+
 
 Route::get('/profile/{user}',[
     // 'middleware' => 'auth',

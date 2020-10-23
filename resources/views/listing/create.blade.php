@@ -11,7 +11,7 @@
 @endsection
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
  <script type="text/javascript" src="{{ asset('js/image-uploader.js')}}"></script>
- <script type="text/javascript" src="{{ asset('js/paymentform.js')}}"></script>
+ {{-- <script type="text/javascript" src="{{ asset('js/paymentform.js')}}"></script> --}}
 
  {{-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> --}}
  
@@ -342,11 +342,11 @@
                                     @csrf
                                       <div class="form-group"> <label for="username">
                                               <h6>Card Owner</h6>
-                                          </label> <input type="text" name="username" placeholder="Card Owner Name" required class="form-control "> </div>
+                                          </label> <input type="text" name="full_name" placeholder="Card Owner Name" required class="form-control "> </div>
                                       <div class="form-group"> <label for="cardNumber">
                                               <h6>Card number</h6>
                                           </label>
-                                          <div class="input-group"> <input type="text" name="cardNumber" placeholder="Valid card number" class="form-control " required>
+                                          <div class="input-group"> <input type="text" name="card_number" placeholder="Valid card number" class="form-control " required>
                                               <div class="input-group-append"> <span class="input-group-text text-muted"> <i class="fab fa-cc-visa mx-1"></i> <i class="fab fa-cc-mastercard mx-1"></i> <i class="fab fa-cc-amex mx-1"></i> </span> </div>
                                           </div>
                                       </div>
@@ -355,14 +355,21 @@
                                               <div class="form-group"> <label><span class="hidden-xs">
                                                           <h6>Expiration Date</h6>
                                                       </span></label>
-                                                  <div class="input-group"> <input type="number" placeholder="MM" name="" class="form-control" required> <input type="number" placeholder="YY" name="" class="form-control" required> </div>
+                                                  <div class="input-group"> <input type="date" placeholder="MM/YY" name="experation_date" class="form-control" required> </div>
                                               </div>
                                           </div>
                                           <div class="col-sm-4">
                                               <div class="form-group mb-4"> <label data-toggle="tooltip" title="Three digit CV code on the back of your card">
                                                       <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
-                                                  </label> <input type="text" required class="form-control"> </div>
+                                                  </label> <input type="text" name="ccv"required class="form-control">
+                                                  <input type="hidden" name="amount" value="500.00">
+                                                  <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+                                                  <input type="hidden" name="payment_id">
+                                                  <input type="hidden" name="advert_id">
+                                                 </div>
+                                                  
                                           </div>
+                                          
                                       </div>
                                       <div class="card-footer">
                                          <button type="subnit" class="subscribe btn btn-primary btn-block shadow-sm">
@@ -428,7 +435,7 @@
   Dropzone.autoDiscover = false;
 // Dropzone.options.demoform = false;	
 let token = $('meta[name="csrf-token"]').attr('content');
-
+var payment_id;
 $(function() {
 
   console.log(  $(".file").val());
@@ -442,7 +449,7 @@ var myDropzone = new Dropzone("div#imageUpload", {
 
 	parallelUploads: 100,
     maxFiles: 10,
-    acceptedFiles: ".jpeg,.jpg,.png,.gif",
+    acceptedFiles: ".jpeg,.jpg,.png,.gif,",
 	params: {
         _token: token
     },
@@ -475,8 +482,12 @@ $("#subi").click(function(){
                 processData:false,
 	    		success: function(result){
 	    			if(result.status == "success"){
+
               $('#exampleModalCenter').modal('hide');
-              console.log(result.status);
+              
+              $("#payment_id").val(result.pay_id); 
+              payment_id =result.pay_id;
+              console.log("this is from payment", result.pay_id);
 	    	 $(document).ready(function() {
 	    	//Make sure that the form isn't actully being sent.
 	    
@@ -490,10 +501,12 @@ $("#subi").click(function(){
 	    			if(result.status == "success"){
 	    				// fetch the useid 
 	    				var userid = result.ad_id;
-            $("#adid").val(userid); // inseting userid into hidden input field
+            $("#adid").val(userid);
+            $("#advert_id").val(userid); // inseting userid into hidden input field
              //process the queue
               console.log(userid);
-	    				myDropzone.processQueue();
+              myDropzone.processQueue();
+               payment( userid);
 	    			}else{
 	    				console.log("error");
 	    			}
@@ -570,6 +583,33 @@ $("#subi").click(function(){
 
  
 });
+
+function payment(id){
+  $(document).ready(function(){
+   
+    console.log(payment_id);
+    console.log(id);
+    $.ajax({
+	    		type: 'PATCH',
+          url: `/listings/${payment_id}/paymentupdate`,
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+	    	data:  {advertisment_id: id},
+	    		success: function(result){
+	    			if(result.status == "success"){
+	    				// fetch the useid 
+	    
+             //process the queue
+              alert(result.status);
+	    			
+	    			}else{
+	    				console.log("error");
+	    			}
+	    		}
+	    	});
+  })
+}
   </script>    
               
 @endsection

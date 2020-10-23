@@ -1,7 +1,7 @@
 @extends('admin.nav')
 
 @section('content')
-
+@csrf
         <div class="row">
           <div class="col-12">
             <div class="card card-chart">
@@ -149,10 +149,11 @@
                 // let adid =1;
                 thisRef.text('processing');
                 $.ajax({
+                  
                     url: "/listings/approved",
                     type:"POST",
                     headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     data:{
                       approved:value,

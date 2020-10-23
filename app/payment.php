@@ -8,7 +8,7 @@ class payment extends Model
 {
     //
     protected $fillable = [
-        'full_name', 'card_number', 'ccv','experation_date',
+        'full_name', 'card_number', 'ccv','experation_date','amount','user_id','advertvertisment_id',
     ];
 
     public function user()

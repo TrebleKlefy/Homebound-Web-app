@@ -105,9 +105,7 @@
                         <h4 class="pt-2">Amenities</h4>
                         <hr style="margin-top: 0rem !important; margin-bottom: 1rem !important; ">
 						<p> {{$advert->amenity}} </p> 
-						@foreach($amenities as $amen)
-						<p>{{$amen}}</p>
-						@endforeach
+					
 
                         <div class="row">
                              
