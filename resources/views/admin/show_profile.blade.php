@@ -17,14 +17,14 @@
 
 
  <div class="wrapper" >
-   
-     
-    
+
+
+
     <div class="main-panel">
-   
+
       <div class="content editcontent ">
         <div class="row py-4s">
-          
+
           <div class="col-12">
             <div class="card card-user">
               <div class="card-body">
@@ -38,15 +38,15 @@
 
 
                         {{-- @if($user->profile_photo != null)
-                        <img  src="/uploads/images/{{$user->profile_photo}}"  class="rounded-circle">                 
+                        <img  src="/uploads/images/{{$user->profile_photo}}"  class="rounded-circle">
                           @else
                           <img src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg" class="rounded-circle">
                           @endif --}}
 
-{{-- 
+{{--
                       <img class="avatar" src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg" alt="..."> --}}
                       @if($user->profile_photo != null)
-                      <img  src="/uploads/images/{{$user->profile_photo}}"  class="avatar">                 
+                      <img  src="{{$user->profile_photo}}"  class="avatar">
                         @else
                         <img src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg" class="avatar">
                         @endif
@@ -58,8 +58,8 @@
                       Ceo/Co-Founder
                     </p>
                     <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0  ">
-                    
-                        <div class="d-flex justify-content-center pta-2"> 
+
+                        <div class="d-flex justify-content-center pta-2">
                           <button href="#" id="previewBtn" class="btn btn-sm btn-infos mr-4" style="">Contact</button>
                           <button href="#" id="uploadBtn" class="btn btn-sm btn-default float-right">Make Report</button>
                         </div>
@@ -87,11 +87,11 @@
           </div>
         </div>
       </div>
-     
+
     </div>
   </div>
-  
- 
+
+
 
 
 

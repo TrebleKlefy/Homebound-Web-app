@@ -14,6 +14,12 @@ use App\advertisment;
 use App\Profile;
 use App\Ad_Images;
 use Auth;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Mail;
+use App\Mail\PasswordReset;
+
+
 class HomeController extends Controller
 {
     /**
@@ -43,7 +49,7 @@ class HomeController extends Controller
                  ->where('advertisments.approved', '=', false);
         })
         ->get();
-        
+
         return response()->json(['status'=>"messages", 'userdetails'=>$userdetail]);
     }
 
@@ -61,7 +67,7 @@ class HomeController extends Controller
         if(Advertisment::all()->count() > 0){
         $advertisment = Advertisment::with('user')->where('approved',false)->paginate(2);
         }
-        
+
         return view('admin.index', compact('user','advertisment','userdetail'));
 
     }
@@ -84,6 +90,8 @@ class HomeController extends Controller
         return User::find(1)->advertisments;
     }
 
+// // api for login
 
-    
+
+
 }

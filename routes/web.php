@@ -30,7 +30,7 @@ Route::get('/admin/profile/{user}', 'HomeController@editprofile')->name('profile
 Route::get('/admin/advertisments', 'HOmeController@all_advert')->name('all_advert')->middleware('is_admin');
 Route::get('/admin/adlistapi', 'HomeController@advertApi')->name('listapi');
 
-// listing for 
+// listing for
 Route::get('/listings/adlistapi','ListingController@userFetchList')->name('fecth');
 Route::get('/listings','ListingController@index')->name('listings');
 Route::get('/listingsextra/{id}','ListingController@indexs')->name('listingsext');
@@ -57,7 +57,7 @@ Route::get('delete/notification/{nid}/', 'NotificationController@DeleteNotificat
 Route::get('inbox/message/', 'NotificationController@mailbox')->name("view.messages");
 Route::get('inbox/message/read/{nid}', 'NotificationController@readInbox')->name("delete.notification");
 
-
+Route::post('contactus/{id}', 'NotificationController@contactuser')->name("contact.user");
 
 
 Route::get('/profile/{user}',[
@@ -75,6 +75,15 @@ Route::get('/profile/{user}/edit',[
     'uses' => 'ProfileController@edit'])->name('profile.edit');
 Route::post('/profile/storeimage', 'ProfileController@storeImages');
 Route::patch('/profile/{user}', 'ProfileController@update')->name('profile.update');
+
+// // api for login
+
+// Route::post('/api/register', 'HomeController@register');
+// Route::post('/api/login', 'HomeController@login');
+// Route::get('/api/user', 'HomeController@getCurrentUser');
+// Route::post('/api/update', 'HomeController@update');
+// Route::get('/api/logout', 'HomeController@logout');
+
 
 
 // Route::get('testimonials/{testimonials}/edit', [

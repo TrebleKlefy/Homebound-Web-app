@@ -1,0 +1,273 @@
+:root {
+    --primary-color: #010712;
+    --secondary-color: #818386;
+    --bg-color: #FCFDFD;
+    --button-color: #3B3636;
+    --h1-color: #3F444C;
+  }
+  
+  [data-theme="dark"] {
+    --primary-color: #FCFDFD;
+    --secondary-color: #818386;
+    --bg-color: #010712;
+    --button-color: #818386;
+    --h1-color: #FCFDFD;
+  }
+  
+  
+ 
+  .modal-bodi h1, label, button, .description {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+  }
+  
+ .modal-bodi h1 {
+    color:white;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    letter-spacing: 0.5rem;
+    font-weight: 300;
+  }
+  
+  .modal-bodi p {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    letter-spacing: 0.01rem;
+    /* width: 40vw; */
+    margin: 0.25rem 0;
+  }
+  
+  .modal-bodi label, .description {
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    font-size: 0.625rem;
+  }
+  
+  .modal-bodi form {
+    width: 31.25rem;
+    position: relative;
+    margin-top: 2rem;
+    padding: 1rem 0;
+  }
+  
+  .modal-bodi input, textarea, label {
+    width: 46vw;
+    display: block;
+  }
+  
+  .modal-bodi p, placeholder, input, textarea {
+    font-family: 'Helvetica Neue', sans-serif;
+  }
+  
+  .modal-bodi input::placeholder, textarea::placeholder {
+    color:grey;
+  }
+  
+  .modal-bodi  input, textarea {
+    color: white;
+    font-weight: 500;
+    background: #28344a;
+    border: none;
+    border-bottom: 1px solid var(--secondary-color);
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    outline: none;
+  }
+  
+  .modal-bodi textarea {
+    resize: none;
+  }
+  
+  .modal-bodi button {
+    text-transform: uppercase;
+    font-weight: 300;
+    background: var(--button-color);
+    color: var(--bg-color);
+    width: 10rem;
+    height: 2.25rem;
+    border: none;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .modal-bodi input:hover, textarea:hover, button:hover {
+    opacity: 0.5;
+  }
+  
+  .modal-bodi  button:active {
+    opacity: 0.8;
+  }
+  
+  /* Toggle Switch */
+  
+  .modal-bodi .theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 160px;
+    position: absolute;
+    top: 0.5rem;
+    right: 0;
+  }
+  
+  .modal-bodi .description {
+      margin-left: 1.25rem;
+    }
+  
+  
+  #error, #success-msg {
+    width: 40vw;
+    margin: 0.125rem 0;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-family: 'Jost';
+    color: var(--secondary-color);
+    }
+
+  
+    #success-msg {
+    transition-delay: 3s;
+    }
+  
+  @media only screen and (max-width: 950px) {
+    .modal-bodi .logo {
+      width: 8rem;
+    }
+    .modal-bodi h1 {
+      font-size: 1.75rem;
+    }
+    .modal-bodi  p {
+      font-size: 0.7rem;
+    }
+    .modal-bodi input, textarea, button {
+      font-size: 0.65rem;
+    }
+    .modal-bodi .description {
+      font-size: 0.3rem;
+      margin-left: 0.4rem;
+    }
+    .modal-bodi  button {
+      width: 7rem;
+    }
+    .modal-bodi .theme-switch-wrapper {
+      width: 120px;
+    }
+    .modal-bodi  .theme-switch {
+    height: 28px;
+    width: 50px;
+  }
+  
+  .modal-bodi .theme-switch input {
+    display:none;
+  }
+  
+  .modal-bodi .slider:before {
+    background-color: #fff;
+    bottom: 0.25rem;
+    content: "";
+    width: 20px;
+    height: 20px;
+    left: 0.25rem;
+    position: absolute;
+    transition: .4s;
+  }
+  .modal-bodi input:checked + .slider:before {
+    transform: translateX(16px);
+  }
+  
+  .modal-bodi .slider.round {
+    border-radius: 15px;
+  }
+  
+  .modal-bodi .slider.round:before {
+    border-radius: 50%;
+  }
+  
+  .modal-bodi input, textarea, label {
+    width: 65vw;
+    display: block;
+}
+
+.w-25 {
+  width: 35% !important;
+}
+  }
+
+
+
+  
+/* ipad */
+@media screen and (max-width: 1170px) {
+  .modal-bodi input, textarea, label {
+    width: 60vw;
+    display: block;
+}
+  
+ 
+}
+
+/* tablets */
+@media only screen and (max-width: 800px){
+  .modal-bodi input, textarea, label {
+    width: 50vw;
+    display: block;
+}
+}
+/* ipad */
+/* @media (max-width: 768px) {
+  
+
+} */
+
+/* moble  */
+@media only screen and (max-width: 768px) {
+
+  .modal-bodi input, textarea, label {
+    width: 53vw;
+    display: block;
+}
+  
+}
+
+@media only screen and (max-width: 600px){
+  .modal-bodi input, textarea, label {
+    width: 67vw;
+    display: block;
+}
+  
+}
+
+
+@media only screen and (max-width: 450px){
+  .modal-bodi input, textarea, label {
+    width: 72vw;
+    display: block;
+}
+}
+@media only screen and (max-width: 368px) {
+  
+  .modal-bodi input, textarea, label {
+    width: 70vw;
+    display: block;
+}
+}
+
+
+@media only screen and (max-width: 328px) {
+
+
+ 
+}
+
+      
+
+@media only screen and (max-width: 320px) {
+  .modal-bodi input, textarea, label {
+    width: 65vw;
+    display: block;
+}
+   
+      
+}

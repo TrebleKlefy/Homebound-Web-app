@@ -22,7 +22,7 @@
                     <div class="aside-compose"><a class="btn btn-primary btn-block" href="../../../demo_1/pages/email/compose.html">Compose Email</a></div>
                     <div class="aside-nav collapse">
                       <ul class="nav">
-                        <li class="active"><a href="../../../demo_1/pages/email/inbox.html"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg></span>Inbox<span class="badge badge-danger-muted text-white font-weight-bold float-right">2</span></a></li>
+                      <li class="active"><a href="/inbox/message/"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg></span>Inbox<span class="badge badge-danger-muted text-white font-weight-bold float-right">{{Auth::user()->unreadNotifications->count() }}</span></a></li>
                         <li><a href="#"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>Sent Mail</a></li>
                         <li><a href="#"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span>Important<span class="badge badge-info-muted text-white font-weight-bold float-right">4</span></a></li>
                         <li><a href="#"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg></span>Drafts</a></li>
@@ -83,13 +83,13 @@
                     </div>
                   </div>
                   <div class="email-body">
-                    <p>Hello,</p>
+                    <p class="font-weight-bold">{{$notification['data']['greeting']}}</p>
                     <br>
-                    <p>Sed ut perspiciatis unde omnis </p>
+                    <p>{{$notification['data']['body']}}</p>
                     <br>
-                    <p>Quisque rutrum.</p>
+                    <p>{{$notification['data']['thanks']}}</p>
                     <br>
-                    <p><strong>Regards</strong>,<br> John Doe</p>
+                    <p><strong>Copyright © 2020, All Right Reserved </strong></p>
                   </div>
                   <div class="email-attachments">
                     <div class="title">Attachments <span>(3 files, 12,44 KB)</span></div>

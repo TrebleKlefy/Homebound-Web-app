@@ -5,8 +5,9 @@ use App\advertisment;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
@@ -16,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','profile_photo','gender','usertype','trn',
+        'name', 'email', 'password','profile_photo','gender','usertype','trn','aboutuser',
     ];
 
     /**
@@ -42,7 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->morphone(Contacts::class, 'contactable');
     }
-    
+
     public function role()
     {
         return $this->belongsToMany(Roles::class);
@@ -69,7 +70,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function payments(){
         return $this->hasmany(Payment::class,'user_id','id');
     }
-    
+
     // public function getImage($path)
     // {
     //     $avatar = asset('avatars/' . $path . '/default-user.jpg');
@@ -87,11 +88,19 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function addressDetails(){
         return $this->address->streetline . ', ' . $this->address->postOffice.','.$this->address->city . ', ' . $this->address->country;
-        
-    } 
+
+    }
 
     public function contactdestails(){
         return $this->contacts->primary_number . ',' . $this->contacts->secondary_number;
-        
+
+    }
+
+    public  function  getJWTIdentifier() {
+        return  $this->getKey();
+    }
+
+    public  function  getJWTCustomClaims() {
+        return [];
     }
 }

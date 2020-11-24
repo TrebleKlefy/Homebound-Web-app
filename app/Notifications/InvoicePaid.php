@@ -60,8 +60,8 @@ class InvoicePaid extends Notification
     public function toDatabase($notifiable)
     {
         return [
-
-            'body' => $this->details['amount'],
+            'name' => $this->details['name'],
+            'body' => $this->details['body'],
             'greeting' => $this->details['greeting'],
             'thanks' => $this->details['thanks'],
            

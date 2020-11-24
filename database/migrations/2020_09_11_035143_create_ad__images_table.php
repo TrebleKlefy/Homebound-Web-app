@@ -17,6 +17,7 @@ class CreateAdImagesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('images')->nullable();
+            $table->string('thumbnailimages')->nullable();
             $table->integer('advertisment_id')->nullable();
             $table->string('user_id')->nullable();
             $table->string('advert_id')->nullable();

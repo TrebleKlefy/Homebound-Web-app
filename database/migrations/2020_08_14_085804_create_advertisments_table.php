@@ -19,7 +19,8 @@ class CreateAdvertismentsTable extends Migration
             $table->integer('rooms')->nullable();;
             $table->integer('bath_rooms')->nullable();;
             $table->integer('kitchen_rooms')->nullable();;
-            $table->string('street')->nullable();;
+            $table->string('street')->nullable();
+            $table->string('street2')->nullable();
             $table->string('apartment_number')->nullable();
             $table->string('amenity')->nullable();
             $table->string('description')->nullable();
@@ -32,6 +33,8 @@ class CreateAdvertismentsTable extends Migration
             $table->string('photo_name')->nullable();
             $table->string('photo_description')->nullable();
             $table->string('images')->nullable();
+            $table->string('name')->nullable();
+            $table->boolean('feature')->default(false);
             $table->integer('user_id');
             $table->boolean("approved")->default(false);
             // $table->Integer("advertismentsable_id");

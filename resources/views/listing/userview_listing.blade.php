@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<link href="{{ asset('css/emailread.css') }}" rel="stylesheet">
 <style>
     
 table.table td:last-child {
@@ -28,13 +28,13 @@ table.table td i {
 }    
     </style>
 
-
-    <div class="container-fluid">
-        <h1 class="mt-4">Advertisments</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Dashboard</li>
+<div class="mask opacity-8 bg-gradient-default">
+    <div class="container-fluid mt-5 pt-5 ">
+        <h1 class="mt-4 text-white">Advertisments</h1>
+        <ol class="breadcrumb mb-4 " style="background-color: rgba(0,0,0,0.2);">
+            <li class="text-white">Dashboard</li>
         </ol>
-        <div class="p-5">
+        <div class="p-5 bg-white" style="border-radius: 0.5%;">
 
        
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

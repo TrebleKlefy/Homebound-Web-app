@@ -82,8 +82,8 @@
                                                 <td class="action"><input type="checkbox" /></td>
                                                 <td class="action"><i class="fa fa-star-o"></i></td>
                                                 <td class="action"><i class="fa fa-bookmark-o"></i></td>
-                                                <td class="name"><a href="/inbox/message/read/{{$notification->id}}">Larry Gardner</a></td>
-                                            <td class="subject"><a href="/inbox/message/read/{{$notification->id}}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </a></td>
+                                                <td class="name"><a href="/inbox/message/read/{{$notification->id}}">{{$notification['data']['name']}}</a></td>
+                                            <td class="subject"><a href="/inbox/message/read/{{$notification->id}}">{{$notification['data']['greeting']}} </a></td>
                                                 <td class="time"><small>{{\Carbon\Carbon::createFromTimeStamp(strtotime($notification->created_at))->diffForHumans()}}</small></td>
                                             </tr>
                                               
@@ -96,8 +96,8 @@
                                             <td class="action"><input type="checkbox" /></td>
                                             <td class="action"><i class="fa fa-star-o"></i></td>
                                             <td class="action"><i class="fa fa-bookmark-o"></i></td>
-                                            <td class="name"><a href="inbox/message/read/{{$notification->id}}">Larry Gardner</a></td>
-                                            <td class="subject"><a href="inbox/message/read/{{$notification->id}}">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed </a></td>
+                                            <td class="name"><a href="inbox/message/read/{{$notification->id}}">{{$notification['data']['name']}}</a></td>
+                                            <td class="subject"><a href="inbox/message/read/{{$notification->id}}">{{$notification['data']['greeting']}} </a></td>
                                             <td class="time"><small>{{\Carbon\Carbon::createFromTimeStamp(strtotime($notification->created_at))->diffForHumans()}}</small></td>
                                         </tr>
                                         @endif

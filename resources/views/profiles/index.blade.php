@@ -4,18 +4,18 @@
 @section('css')
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 @endsection
- 
+
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
 
 <div class="main-content">
-  
+
   <!-- Header -->
   <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 550px; background-image: url(https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
     <!-- Mask -->
     <span class="mask bg-gradient-default opacity-8"></span>
     <!-- Header container -->
-  
+
   </div>
   <!-- Page content -->
   <div class="container-fluid mt--7s">
@@ -27,7 +27,7 @@
               <div class="card-profile-image">
                 <a href="#">
                 @if($user->profile_photo != null)
-                <img  src="/uploads/images/{{$user->profile_photo}}"  class="rounded-circle">                 
+                <img  src="{{$user->profile_photo}}"  class="rounded-circle">
                   @else
                   <img src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg" class="rounded-circle">
                   @endif
@@ -35,7 +35,7 @@
               </div>
             </div>
           </div>
-         
+
           <div class="card-body pt-0 pt-md-4">
             <div class="row">
               <div class="col">
@@ -59,7 +59,7 @@
                     </div>
                   </div>
                   @endif
-                  
+
                   @else
                   <div class=" text-center border-0 pt-8 pt-md-4 ">
                     <div class="d-flex justify-content-center pt-8r">
@@ -74,7 +74,7 @@
                     <span class="description">Advertisments</span>
                   </div>
                   <div>
-                    
+
                     <span class="heading">0</span>
                     <span class="description">Reviews</span>
                   </div>
@@ -99,7 +99,7 @@
                   </div>
                   <div>
                       <i class="ni education_hat mr-2"></i> Contact Number: {{$user->contactdestails()}}
-                      
+
                     </div>
               <hr class="my-4">
               {{-- @foreach($adds as $advert)
@@ -111,7 +111,7 @@
           </div>
         </div>
       </div>
-      
+
 
       </div>
 

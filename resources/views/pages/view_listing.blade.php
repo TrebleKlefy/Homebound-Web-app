@@ -5,13 +5,14 @@
 
 <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
 
+<link href="{{ asset('css/contactus.css') }}" rel="stylesheet">
 
 @endsection
 
 @section('content')
 {{-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> --}}
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{{-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
 <!------ Include the above in your HEAD tag ---------->
 
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap" rel="stylesheet">
@@ -127,11 +128,11 @@
                         <div class=" text-center">
 	        				<div class="btn-group">
                                 <div class="pr-1" >
-                                <a href="#" class="round-black-btn">Contact Realter</a>
+                                <a href="#" class="round-black-btn"  data-toggle="modal" data-target="#exampleModalCenter">Contact Realter</a>
                                 </div>
 
                                 <div class="pl-1">
-                                <a href="/profile/{{$user->id}}" class="round-black-btn">owners's profile</a>
+                                <a href="/profile/{{$user->id}}" class="round-black-btn">Owners's profile</a>
                             </div>
                             </div>
                            
@@ -197,29 +198,121 @@
 				</div>
 			</div>
 			
-			<div style="text-align:center;font-size:14px;padding-bottom:20px;">Get free icon packs for your next project at <a href="http://iiicons.in/" target="_blank" style="color:#ff5e63;font-weight:bold;">www.iiicons.in</a></div>
+			
 		</div>
 	</div>
+
+
+
+	<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+	  <div class="modal-content">
+		<div class="modal-header text-center">
+			<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong> <img src="/img/LogoMakr.png" class="img-fluid w-25" alt="logo"></strong></h3>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body modal-bodi">
+	
+			
+		<div class="container">
+
+			
+			<div class="text-center gifi"  id="gifi">
+				<h1>Contact us</h1>
+				<p>Planning to visit Indonesia soon? Get insider tips on where to go, things to do and find best deals for your next adventure.</p>
+			</div>
+			<div class="notification"> </div>
+			<div class="container">
+			<form id="contact-form" method="post" action="/contactus/{{$user->id}}" name="contactus">
+					@csrf
+				  <label for="name" class="text-white">Full name</label>
+			  <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+				  <label for="email" class="text-white">Email Address</label>
+			  <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+				  <label for="message" class="text-white">Message</label>
+			  <textarea rows="6" placeholder="Your Message" id="message" name="message" required></textarea>
+				  <!--<a href="javascript:void(0)">--><button type="submit" id="submit" name="submit">Send</button><!--</a>-->
+				  <input type="hidden" name="user_id" id="id" value="{{$user->id}}">
+
+				  {{-- <div class="gifi" id="gifi"> </div> --}}
+			</form>
+			<div id="error"></div>
+			<div id="success-msg"></div>
+		</div>
+		</div>
+		
+		
+	  </div>
+	</div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+	
+
+  {{-- @include('footer.footer') --}}
+<script type="text/javascript">
+    
+ 
+	 var id = $('#id').val();
+	 $("form[name='contactus']").on('submit',function(event) {
+			event.preventDefault();
+			gif();
+			$.ajax({
+				type: 'POST',
+				url: `/contactus/${id}`,
+				headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+	    		data:  new FormData(this),
+                contentType:false,
+                processData:false,
+	    		success: function(result){
+					$("#contact-form")[0].reset()
+					document.getElementById("gifi").style.display = "none";
+                    const html = `
+
+                   <div class=" pl-3 alert alert-success text-center">
+                     <p>Thank you for contacting us, we will get back to you in short order</p>
+                   </div>
+                    `;
+                    const notification = document.querySelector('.notification');
+                    notification.innerHTML += html;
+				}
+			});
+		});
 
 
 
+		function gif(){
+
+const html = `
 
 
+			<div class="col-md-12  text-center form-group">
+					<img src="https://thumbs.gfycat.com/BlaringWeightyCollie.webp"
+					 alt="Sending Message" class="w-25 bg-overlay lazy align-self-center">
+			</div>
+		`;
+const notification = document.querySelector('.gifi');
+notification.innerHTML += html;
+}
 
-  @include('footer.footer')
-<script>
-    AOS.init({
- 	duration: 800,
- 	easing: 'slide',
- 	once: true
- });
+
 </script>
 @endsection
 
 @section('javascript')
 <script src="{{ asset('js/product_details.js') }}"></script>
+<script src="{{ asset('js/contactus.js') }}"></script>
 @endsection

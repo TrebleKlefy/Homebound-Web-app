@@ -24,7 +24,7 @@ class ProfileController extends Controller
     // //returning the user to the function allowing laravel to do it in a compact way
     public function edit(User $user)
     {
-        
+
         return view('profiles.edit' ,compact('user'));
     }
 
@@ -35,9 +35,9 @@ class ProfileController extends Controller
  {
      $user->update($this->validateRequest());
      $user->address()->update($this->validateRequestthree());
-    
+
     return redirect()->back()->with('message', 'Successfull update!');
-    
+
  }
 
 
@@ -77,7 +77,7 @@ class ProfileController extends Controller
     file_put_contents($path, $image);
     $user = Auth::user();
     $imageupload = User::findOrFail($user->id);
-    $imageupload->profile_photo = $image_name;
+    $imageupload->profile_photo = '/uploads/images/'.$image_name;
     $imageupload->save();
     return response()->json(['status'=>"success"]);
 
@@ -86,7 +86,7 @@ class ProfileController extends Controller
 
  public function adverts($id){
     $advertisments = Advertisment::where('user_id',$id)->get();
-    return view('listing.userview_listing', compact('advertisments')); 
+    return view('listing.userview_listing', compact('advertisments'));
 }
 
 

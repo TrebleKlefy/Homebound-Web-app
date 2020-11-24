@@ -14,14 +14,14 @@
  {{-- <script type="text/javascript" src="{{ asset('js/paymentform.js')}}"></script> --}}
 
  {{-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> --}}
- 
+
   {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script> --}}
- 
+
   {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> --}}
-  
- 
+
+
   <style type="text/css">
- 
+
  .dropzoneDragArea {
 		    background-color: #fbfdff;
 		    border: 1px dashed #c0ccda;
@@ -35,23 +35,23 @@
 			box-shadow: 0px 2px 20px 0px #f2f2f2;
 			border-radius: 10px;
 		}
- 
-  </style>
-  
 
-    
+  </style>
+
+
+
 <!-- Header -->
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
 <!-- Mask -->
 <span class="mask bg-gradient-default opacity-8"></span>
 <!-- Header container -->
 <div class="container-fluid d-flex align-items-center  mb-5">
-  
+
     <div class=" col-md-10 mb-5">
     <h1 class="display-2 text-white ">Hello {{$user->first_name}}</h1>
       <p class="text-white mt-0 mb-5">This is your create Advertisment pahe. You can create ad's here and upload up to 10 HD images.</p>
     </div>
- 
+
 </div>
 </div>
 
@@ -82,16 +82,16 @@
                 <div class="">
                     <h3 class="page-title">Description</h3>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="title" placeholder="Listing Title">
+                        <input class="form-control" type="text" name="title" placeholder="Listing Title: eg, 2 Bed room apartment Furnished ">
                     </div><!-- /.form-group -->
-                
+
                     <div class="form-group">
                         <textarea class="form-control" maxlength="255" placeholder="Listing Description"  name="description" rows="8"></textarea>
                     </div><!-- /.form-group -->
                 </div><!-- /.box -->
-                
+
                 <div class="row">
-                  
+
                 <div class="input-group  mb-3 col-4 pl-3 ">
                   <div class="input-group-prepend">
                     <span class="input-group-text">$</span>
@@ -104,7 +104,6 @@
 
                 <div class="input-group col-4">
                   <select id="inputState" class="form-control" name="buildingtype">
-                      <option selected>Building Type</option>
                       <option value="Apartment">Apartment</option>
                       <option value="House">House</option>
                       <option value="Villa">Villa</option>
@@ -113,23 +112,22 @@
 
                 <div class="input-group col-4">
                   <select id="inputState" class="form-control" name="contract">
-                    <option selected>Contract Type</option>
                     <option value="Rental">Rental</option>
                     <option value="Lease">Lease</option>
                     </select>
                 </div>
-                
-              
+
+
               </div>
               </div>
 
               <div class="col-lg-6">
                 <div class=" form-group ">
                     <h3 class="page-title">Amenities</h3>
-                
+
                     <div class="row">
-                
-                    
+
+
                     <ul class="amenities float-right pl-3 ">
                         <li class="checkbox"><input type="checkbox" name="amenity[]"  id="amenity-1" value="Air conditioning"> <label for="amenity-1">Air conditioning</label></li>
                         <li class="checkbox"><input type="checkbox" name="amenity[]"  id="amenity-2" value="Balcony"> <label for="amenity-2">Balcony</label></li>
@@ -166,12 +164,13 @@
                         <li class="checkbox"><input type="checkbox" name="amenity[]"  id="amenity-33" value="Furnished"> <label for="amenity-33">Furnished</label></li>
                     </ul>
                     <input type="hidden" class="adid" name="userid" id="adid" value="">
+                    <input type="hidden" class="payment" name="payments" id="payment" value="">
                     {{-- <input type="hidden" class="userid" name="userid" id="userid" value=""> --}}
                 </div>
-                
+
               </div>
             </div>
-            
+
           </div>
           <div class="form-row">
             <div class="col-4">
@@ -199,8 +198,8 @@
             <div class="row">
               <div class="col-lg-4">
                 <div class="form-group focused">
-                  <label class="form-control-label" for="input-city">?</label>
-                  <input type="text" id="input-city" name='?' class="form-control form-control-alternative" placeholder="33 Myway View" >
+                  <label class="form-control-label" for="input-city">Address 2</label>
+                  <input type="text" id="input-city" name='street2' class="form-control form-control-alternative" placeholder="33 Myway View" >
                 </div>
               </div>
               <div class="col-lg-4">
@@ -238,22 +237,22 @@
             </div>
           </div>
           <hr class="my-4">
-        
+
         <div class="row">
-           
-        
+
+
             <div class="col-sm-12 dropzone mb-4">
-                <div class="background-white p30 mb30">            
+                <div class="background-white p30 mb30">
                     <h3 class="page-title">Gallery</h2>
-                       
-                      
+
+
                       <div class="container" id="containers" >
-                        <label class="label" for="input">Please upload a picture to be the face of your Advertisment, this is the first photo 
+                        <label class="label" for="input">Please upload a picture to be the face of your Advertisment, this is the first photo
                           everyone will see on the listing page. This is required.</label>
                           <div id="containeers"  class="text-center">
 
                           </div>
-                      
+
                         <div class="input form-group">
                           <input name="images" class="form-control form-control-alternative" id="file" type="file">
                         </div>
@@ -262,13 +261,13 @@
                                 <input type="text" name="photo_name" id="name-1">
                                 <label for="name-1" placeholder="Give photos a name"></label>
                             </div>
-                        
+
                             <div class="input-field mb-3">
                                 <input type="text" name="photo_description" id="description-1">
                                 <label for="description-1" placeholder="Description"></label>
                             </div> --}}
-                          
-                            
+
+
                             <div class="form-group">
                             <div id="imageUpload" class="dz-default dz-message dropzoneDragArea stylezone mb-4">
                               <span class="text-danger text-center">Listing Images</span>
@@ -277,9 +276,9 @@
                             </div>
                             <div class="dropzone-previews"></div>
                             </div>
-                
+
                       @if($errors->any())
-                    <div class="alert alert-danger"> 
+                    <div class="alert alert-danger">
                       <ul>
                           @foreach($errors->all() as $error)
                           <li>{{ $error }}</li>
@@ -287,10 +286,10 @@
                       </ul>
                     </div>
                       @endif
-                      
+
                       <button  class="btn btn-primary btn-block " type ="button" id ="subi" >Upload & Submit</button>
                 </div><!-- /.box -->
-                
+
         </div><!-- /.row -->
         </form>
       </div>
@@ -304,10 +303,6 @@
 <style>
 
 </style>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -321,7 +316,7 @@
       </div>
       <div class="modal-body">
         <div class="container py-5">
-         
+
           <div class="row">
               <div class="col-lg-12 mx-auto">
                   <div class="card ">
@@ -340,6 +335,10 @@
                               <div id="credit-card" class="tab-pane fade show active pt-3">
                                   <form role="form" method="post" id="paymentData" name="paymentData" action ="/listings/payment" enctype="multipart/form-data">
                                     @csrf
+                                    <div class="form-group"> <label for="username">
+                                        <h6>Payment</h6>
+                                        <h6>Each advertisement cost $1000 but pay 15,000 to have your advertisement Featured</h6>
+                                    </label> <input type="number" name="amount" placeholder="$1000" value="1000.00" required class="form-control "> </div>
                                       <div class="form-group"> <label for="username">
                                               <h6>Card Owner</h6>
                                           </label> <input type="text" name="full_name" placeholder="Card Owner Name" required class="form-control "> </div>
@@ -362,19 +361,19 @@
                                               <div class="form-group mb-4"> <label data-toggle="tooltip" title="Three digit CV code on the back of your card">
                                                       <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
                                                   </label> <input type="text" name="ccv"required class="form-control">
-                                                  <input type="hidden" name="amount" value="500.00">
+                                                  {{-- <input type="hidden" name="amount" value="500.00"> --}}
                                                   <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                                                   <input type="hidden" name="payment_id">
                                                   <input type="hidden" name="advert_id">
                                                  </div>
-                                                  
+
                                           </div>
-                                          
+
                                       </div>
                                       <div class="card-footer">
                                          <button type="subnit" class="subscribe btn btn-primary btn-block shadow-sm">
                                             Confirm Payment </button>
-                                      
+
                                   </form>
                               </div>
                           </div> <!-- End -->
@@ -415,7 +414,7 @@
       </div>
       <div class="modal-footer" style="justify-content: center !important;">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      
+
       </div>
     </div>
   </div>
@@ -427,21 +426,21 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
-        <script src="http://malsup.github.com/jquery.form.js"></script> 
+        <script src="http://malsup.github.com/jquery.form.js"></script>
         {{-- <script type="text/javascript" src="{{ asset('js/imageview.js')}}"></script> --}}
-  
-        
+
+
 <script>
   Dropzone.autoDiscover = false;
-// Dropzone.options.demoform = false;	
+// Dropzone.options.demoform = false;
 let token = $('meta[name="csrf-token"]').attr('content');
 var payment_id;
 $(function() {
 
   console.log(  $(".file").val());
 
-var myDropzone = new Dropzone("div#imageUpload", { 
-	paramName: "file",
+var myDropzone = new Dropzone("div#imageUpload", {
+	paramName: "images",
 	url: "{{ url('/listings/storeimage') }}",
 	previewsContainer: 'div.dropzone-previews',
 	addRemoveLinks: true,
@@ -453,13 +452,11 @@ var myDropzone = new Dropzone("div#imageUpload", {
 	params: {
         _token: token
     },
-   
+
 	 // The setting up of the dropzone
 	init: function() {
 	    var myDropzone = this;
       //form submission code goes here
-      
-
       $(document).ready(function(){
 
 
@@ -473,7 +470,7 @@ $("#subi").click(function(){
 	    	event.preventDefault();
 
 	    	URL = $("#form").attr('action');
-	    
+
 	    	$.ajax({
 	    		type: 'POST',
 	    		url: '/listings/payment',
@@ -483,34 +480,35 @@ $("#subi").click(function(){
 	    		success: function(result){
 	    			if(result.status == "success"){
 
-              $('#exampleModalCenter').modal('hide');
-              
-              $("#payment_id").val(result.pay_id); 
-              payment_id =result.pay_id;
-              console.log("this is from payment", result.pay_id);
-	    	 $(document).ready(function() {
+            $('#exampleModalCenter').modal('hide');
+
+            $("#payment_id").val(result.pay_id);
+            $("#payment").val(result.amount);
+            payment_id =result.pay_id;
+
+	    	$(document).ready(function() {
 	    	//Make sure that the form isn't actully being sent.
-	    
+
         formData = $('#form').serialize();
 
 	    	$('#form').ajaxSubmit({
-	    		type: 'POST',
-	    		url: '/listings/store',
-	    	
-	    		success: function(result){
-	    			if(result.status == "success"){
-	    				// fetch the useid 
-	    				var userid = result.ad_id;
+	    	type: 'POST',
+	    	url: '/listings/store',
+
+	    	success: function(result){
+	    	if(result.status == "success"){
+	    	// fetch the useid
+	    	var userid = result.ad_id;
             $("#adid").val(userid);
             $("#advert_id").val(userid); // inseting userid into hidden input field
              //process the queue
-              console.log(userid);
-              myDropzone.processQueue();
-               payment( userid);
-	    			}else{
-	    				console.log("error");
-	    			}
-	    		}
+            console.log(userid);
+            myDropzone.processQueue();
+            payment( userid);
+	    	}else{
+	    	console.log("error");
+	    	}
+	    	}
 	    	});
       });
 	    			}else{
@@ -518,10 +516,10 @@ $("#subi").click(function(){
 	    			}
 	    		}
 	    	});
-      }); 
+      });
     });
     });
-        
+
 	    //Gets triggered when we submit the image.
 	    this.on('sending', function(file, xhr, formData){
 	    //fetch the user id from hidden input field and send that userid with our image
@@ -529,7 +527,7 @@ $("#subi").click(function(){
         //   let user_id = document.getElementById('userid').value;
 		   formData.append('adid', adid);
 		});
-		
+
 	    this.on("success", function (file, response) {
             //reset the form
             $('#form')[0].reset();
@@ -538,23 +536,23 @@ $("#subi").click(function(){
         });
 
         this.on("queuecomplete", function () {
-		
+
         });
-		
-  
+
+
 	}
   });
 
   var container = $('#containers'),containers = $('#containeers'),inputFile = $('#file'), img, btn, txt = 'Browse', txtAfter = 'Browse another pic';
-			
+
 	if(!container.find('#upload').length){
 		container.find('.input').append('<input type="button" value="'+txt+'" id="upload" class="btn btn-primary btn-block ">');
 		btn = $('#upload');
     containers.prepend('<img  src="" class="hidden imgs" alt="Uploaded file" id="uploadImg" width="100">');
     img = $('#uploadImg');
-    
+
 	}
-			
+
 	btn.on('click', function(){
 		img.animate({opacity: 0}, 300);
 		inputFile.click();
@@ -566,7 +564,7 @@ $("#subi").click(function(){
     // console.log(inputFile.val())
 		var i = 0;
 		for(i; i < e.originalEvent.srcElement.files.length; i++) {
-			var file = e.originalEvent.srcElement.files[i], 
+			var file = e.originalEvent.srcElement.files[i],
 				reader = new FileReader();
 
 			reader.onloadend = function(){
@@ -575,43 +573,43 @@ $("#subi").click(function(){
 			reader.readAsDataURL(file);
 			img.removeClass('hidden');
 		}
-		
+
 		btn.val( txtAfter );
     });
-    
 
 
- 
+
+
 });
 
-function payment(id){
-  $(document).ready(function(){
-   
-    console.log(payment_id);
-    console.log(id);
-    $.ajax({
-	    		type: 'PATCH',
-          url: `/listings/${payment_id}/paymentupdate`,
-        headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-	    	data:  {advertisment_id: id},
-	    		success: function(result){
-	    			if(result.status == "success"){
-	    				// fetch the useid 
-	    
-             //process the queue
-              alert(result.status);
-	    			
-	    			}else{
-	    				console.log("error");
-	    			}
-	    		}
-	    	});
-  })
-}
-  </script>    
-              
+// function payment(id){
+//   $(document).ready(function(){
+
+//     console.log(payment_id);
+//     console.log(id);
+//     $.ajax({
+// 	    		type: 'PATCH',
+//           url: `/listings/${payment_id}/paymentupdate`,
+//         headers: {
+//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//         },
+// 	    	data:  {advertisment_id: id},
+// 	    		success: function(result){
+// 	    			if(result.status == "success"){
+// 	    				// fetch the useid
+
+//              //process the queue
+//               alert(result.status);
+
+// 	    			}else{
+// 	    				console.log("error");
+// 	    			}
+// 	    		}
+// 	    	});
+//   })
+// }
+  </script>
+
 @endsection
 @section('javascript')
 

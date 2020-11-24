@@ -139,10 +139,10 @@
                                 <div class="d-flex bd-highlight m-0">
                                   <div class="p-3 bd-highlight">
                                     
-                                      <h6> Payment made</h6>
+                                      <h6 class="small"> {{$notification['data']['greeting']}}</h6>
                                      
                                   </div>
-                                  <div class="p-2 bd-highlight"><small>{{\Carbon\Carbon::createFromTimeStamp(strtotime($notification->created_at))->diffForHumans()}}</small></div>
+                                  <div class="p-2 bd-highlight small"><small>{{\Carbon\Carbon::createFromTimeStamp(strtotime($notification->created_at))->diffForHumans()}}</small></div>
                                 </div>
                                 </a>
                                 @endforeach
@@ -220,7 +220,7 @@
     <div class="modal-content form-elegant text-white">
       <!--Header-->
       <div class="modal-header text-center">
-        <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong> <img src="./img/LogoMakr.png" class="img-fluid w-25" alt="logo"></strong></h3>
+        <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong> <img src="/img/LogoMakr.png" class="img-fluid w-25" alt="logo"></strong></h3>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>

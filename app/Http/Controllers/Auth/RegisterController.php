@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Notification;
+use App\Notifications\NewUser;
 
 class RegisterController extends Controller
 {
@@ -63,7 +65,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'primary_number' => ['required', 'string', 'unique:contacts'],
             'secondary_number' => ['nullable', 'string', 'unique:contacts'],
-          
+
             'streetline' => ['required', 'string'],
             'city' => ['required', 'string'],
             'country' => ['required', 'string'],
@@ -83,23 +85,34 @@ class RegisterController extends Controller
             [
                 'primary_number' => $req->primary_number,
                 'secondary_number' => $req->secondary_number,
-            
+
             ]
         );
 
         $user->address()->create(
             [
-              
+
                 'streetline' => $req->streetline,
-                 'city' => $req->city, 
+                 'city' => $req->city,
                  'country' => $req->country,
                  'postOffice' => $req->postOffice,
-               
+
             ]
         );
         Auth::login($user);
+
+        $details = [
+
+            'name' => 'Homebound',
+            'greeting' => 'Welcome to HomeBound',
+            'body' => 'Welcome to Homebound we hope our experience here will create a lifetime relationship between us, please free to contact us with alll your concerns.',
+            'thanks' => 'Thank you for chosing homebound!',
+        ];
+        Notification::send($user, new NewUser($details));
+
+        
         return redirect()->route('profile.show', ['user' => $user->id, 'message' => 'Registration success']);
-      
+
     }
 
     /**

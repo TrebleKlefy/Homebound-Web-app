@@ -15,45 +15,45 @@
     <div class="col-md-7 text-center pt-5 mt-5 " >
       <h1 class="text-white">Apartments</h1>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-      
-      
 
 
-      <form id="" action="/listings/filtered" method="post" > 
+
+
+      <form id="" action="/listings/filtered" method="post" >
         @csrf
-    
+
           <!-- Actual search box -->
           <div class="form-group has-search input-field-text-white">
             <span class="fa fa-search form-control-feedback"></span>
             <input type="text" class="form-control " name="search" placeholder="Search" >
-          </div>  
-          
+          </div>
+
           <label for="exampleFormControlSelect2" style="color:white">Search by prices</label>
           <div class=" rowsize " style="  margin-right: -15px !important;
-          margin-left: -15px !important;">  
+          margin-left: -15px !important;">
           <div class="form-group col-6 text-white">
-             
+
               <select class="form-control" id="exampleFormControlSelect2" name= "price1" style="    color: white !important;">
                 <option >From</option>
-                
+
             @foreach($advertisments as $adds)
-               
+
                 <option> {{$adds->price }}</option>
             @endforeach
               </select>
           </div>
-  
+
           <div class="form-group col-6 text-white">
-            
+
               <select class="form-control" id="exampleFormControlSelect2" name= "price2"  style="    color: white !important;">
                 <option>To</option>
               @foreach($advertisments as $addprice)
-               
+
                 <option> {{$addprice->price }}</option>
               @endforeach
               </select>
           </div>
-            
+
           </div>
           <div class=" text-center">
             <button  class ="btn btn-dark btn-sm  btn-block" type="submit">
@@ -61,7 +61,7 @@
             </button>
           </div>
         </form>
-      
+
     </div>
   </div>
 </div>
@@ -72,38 +72,38 @@
 <div class="row rowchange">
 
 <aside class="section-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12 pt-4 pb-4" >
-   
-    
-  <form id="" action="/listings/filtered" method="post" > 
+
+
+  <form id="" action="/listings/filtered" method="post" >
       @csrf
-  
+
         <!-- Actual search box -->
         <div class="form-group has-search">
           <span class="fa fa-search form-control-feedback"></span>
           <input type="text" class="form-control" name="search" placeholder="Search">
-        </div>  
+        </div>
 
         <label for="exampleFormControlSelect2">Search by prices</label>
         <div class="row" style="  margin-right: -15px !important;
-        margin-left: -15px !important;">  
+        margin-left: -15px !important;">
         <div class="form-group col-6">
-           
+
             <select class="form-control" id="exampleFormControlSelect2" name= "price1">
               <option>From</option>
-              
+
           @foreach($advertisments as $adds)
-             
+
               <option> {{$adds->price }}</option>
           @endforeach
             </select>
         </div>
 
         <div class="form-group col-6">
-          
+
             <select class="form-control" id="exampleFormControlSelect2" name= "price2">
               <option>To</option>
             @foreach($advertisments as $addprice)
-             
+
               <option> {{$addprice->price }}</option>
             @endforeach
             </select>
@@ -119,11 +119,11 @@
  </aside>
 
 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-   
+
 {{-- @include('layouts.cards') --}}
 {{-- <div class="container">
   <div class="row"> --}}
- 
+
 <div class="site-secion pt-4">
   <div class="container">
     <!-- <div class="row">
@@ -139,23 +139,23 @@
       <a href="/listingsextra/{{$add->id}}" class="unit-9">
           <div class="image" style="background-image: url('{{$add->images}}');"></div>
           <div class="unit-9-content">
-            <h2>{{$add->street}}</h2>
+            <h2>{{$add->name}}</h2>
             <span>${{$add->price}}/night</span>
             <!-- <span>with Wendy Matos</span> -->
           </div>
         </a>
       </div>
 
-      
+
       @endforeach
-      {{$advertisments->links()}} 
+      {{$advertisments->links()}}
     </div>
   </div>
 </div>
 
 
 
-{{-- 
+{{--
 
 @foreach($advertisments as $add)
 
@@ -165,7 +165,7 @@
       <div class="r_ca">
 
 <div class="imagecontainer">
-  <div class="r_card_header" role="img" style=" background: url('http://www.2oceansvibe.com/wp-content/uploads/2011/07/man4.jpg') 50% 0% no-repeat;" >   
+  <div class="r_card_header" role="img" style=" background: url('http://www.2oceansvibe.com/wp-content/uploads/2011/07/man4.jpg') 50% 0% no-repeat;" >
   </div>
 </div>
 <div class="contentcontainer">
@@ -187,14 +187,14 @@
   <div class="r_card_footer">
       <div class="icon area pr-2">
       {{$add->kitchen_rooms}} <i class="fas fa-utensils"></i>
-          
+
       </div>
-     
+
       <div class="icon bath pr-1">
         {{$add->bath_rooms}} <i class="fa fa-bath" aria-hidden="true"></i>
       </div>
        <div class="icon area ">
-        {{$add->rooms}} <i class="fa fa-bed" aria-hidden="true"></i> 
+        {{$add->rooms}} <i class="fa fa-bed" aria-hidden="true"></i>
       </div>
   </div>
 </div>

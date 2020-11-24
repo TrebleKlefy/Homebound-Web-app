@@ -16,7 +16,7 @@ class NewUser extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
         //
         $this->data = $data;
@@ -45,14 +45,14 @@ class NewUser extends Notification
         return (new MailMessage)
         ->greeting($this->data['greeting'])
         ->line($this->data['body'])
-        ->action($this->data['actionText'], $this->data['actionURL'])
+        // ->action($this->data['actionText'], $this->data['actionURL'])
         ->line($this->data['thanks']);
     }
     public function toDatabase($notifiable)
     {
         return [
-            
-            'thanks' => $this->data['eamil'],
+            'name' => $this->data['name'],
+            'thanks' => $this->data['thanks'],
             'body' => $this->data['body'],
             'greeting'=> $this->data['greeting'],
             

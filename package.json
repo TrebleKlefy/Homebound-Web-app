@@ -26,6 +26,7 @@
     "dependencies": {
         "@material-ui/icons": "^4.9.1",
         "bootstrap-table": "^1.18.0",
+        "composer": "^4.1.0",
         "material-design-icons": "^3.0.1",
         "selectize": "^0.12.6"
     }
