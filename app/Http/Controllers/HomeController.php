@@ -37,10 +37,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    // public function index()
-    // {    $user= auth()->user();
-    //     return view('profiles.index' ,compact('user'));
-    // }
+
 
     public function advertApi(){
         $userdetail =DB::table('users')
@@ -90,7 +87,7 @@ class HomeController extends Controller
         return User::find(1)->advertisments;
     }
 
-// // api for login
+
 
 
 

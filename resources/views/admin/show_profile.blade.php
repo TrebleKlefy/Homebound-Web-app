@@ -37,14 +37,7 @@
                     <a href="javascript:void(0)">
 
 
-                        {{-- @if($user->profile_photo != null)
-                        <img  src="/uploads/images/{{$user->profile_photo}}"  class="rounded-circle">
-                          @else
-                          <img src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg" class="rounded-circle">
-                          @endif --}}
-
-{{--
-                      <img class="avatar" src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg" alt="..."> --}}
+            
                       @if($user->profile_photo != null)
                       <img  src="{{$user->profile_photo}}"  class="avatar">
                         @else

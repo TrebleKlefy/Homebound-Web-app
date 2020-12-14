@@ -1,15 +1,18 @@
 <?php
 use Illuminate\Http\Request;
 
-// estas rutas se pueden acceder sin proveer de un token válido.
+//post
 Route::post('/login', 'AuthController@login');
 Route::post('/register', 'AuthController@register');
-// estas rutas requiren de un token válido para poder accederse.
-// Route::group(['middleware' => 'auth.jwt'], function () {
-// Route::get('/logout', 'AuthController@logout');
-// });
 Route::post('/logout', 'AuthController@logout');
-Route::get('/apiprofile/{user}',['uses' => 'APIController@user']);
 Route::post('/apilistings/filtered', 'APIController@filter');
+Route::post('/contactus/{id}', 'NotificationController@contactuser')->name("contact.user");
+
+//get
+Route::get('/apiprofile/{user}',['uses' => 'APIController@user']);
+Route::get('/apiadcount/{user}',['uses' => 'APIController@reviewcounter']);
 Route::get('/apilistings','APIController@index');
 Route::get('/apinotification/{user}',['uses' => 'APIController@userNotification']);
+Route::get('/apiread/{nid}/{uid}','APIController@readInbox');
+
+

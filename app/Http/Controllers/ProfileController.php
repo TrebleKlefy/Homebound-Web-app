@@ -10,22 +10,29 @@ use App\contacts;
 use App\advertisment;
 use App\Profile;
 use App\Ad_Images;
+use App\Reviews;
 use Auth;
 
 class ProfileController extends Controller
 {
     public function index(User $user)
     {
+      $count = 0;
        $adds = DB::table('users')
        ->join('advertisments', 'users.id','=','advertisments.user_id')->get();
-       return view('profiles.index' ,compact('user','adds'));
+       $review = DB::table('advertisments')
+       ->join('reviews', 'advertisments.id','=','reviews.advertisment_id')->sum('advertisment_id');
+
+
+       return view('profiles.index' ,compact('user','adds','review'));
     }
 
     // //returning the user to the function allowing laravel to do it in a compact way
     public function edit(User $user)
     {
-
-        return view('profiles.edit' ,compact('user'));
+        $review = DB::table('advertisments')
+        ->join('reviews', 'advertisments.id','=','reviews.advertisment_id')->sum('advertisment_id');
+        return view('profiles.edit' ,compact('user','review'));
     }
 
 
@@ -51,6 +58,7 @@ class ProfileController extends Controller
         'trn' => ['required', 'string', 'max:255'],
         'gender' => ['required', 'string', 'max:255'],
         'images' => 'sometimes|file|image|max:5000',
+        'aboutuser' => ['nullable', 'string','max:255'],
 
      ]);
  }
@@ -62,6 +70,7 @@ class ProfileController extends Controller
         'city' => ['required', 'string'],
         'country' => ['required', 'string'],
         'postOffice' => ['nullable', 'string'],
+
     ]);
  }
 

@@ -4,13 +4,13 @@
 
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css"/>
- 
+
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"/>
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.bootstrap.min.css"/>
 
 <style>
-    
+
 table.table td:last-child {
     width: 130px;
 }
@@ -31,8 +31,8 @@ table.table td button.delete {
 }
 table.table td i {
     font-size: 19px;
-   
-}    
+
+}
     </style>
 
 
@@ -41,63 +41,19 @@ table.table td i {
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
-        {{-- <div class="row">
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-primary text-white mb-4">
-                    <div class="card-body">Primary Card</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-warning text-white mb-4">
-                    <div class="card-body">Warning Card</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-success text-white mb-4">
-                    <div class="card-body">Success Card</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card bg-danger text-white mb-4">
-                    <div class="card-body">Danger Card</div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        
-
     </div>
 
 
         <div class="card-header">
             <i class="fas fa-table mr-1"></i>
-           Appointments 
+           Appointments
         </div>
-        
-          
                 <div class="alert alert-danger" role="alert"><strong>Info!</strong> Add row and Delete row are working. Edit row displays modal with row cells information.</div>
 
-                
-                
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
                   <div class="modal-dialog">
-                
+
                     <!-- Modal content-->
                     <div class="modal-content">
                       <div class="modal-header">
@@ -105,20 +61,20 @@ table.table td i {
                         <h4 class="modal-title">Row information</h4>
                       </div>
                       <div class="modal-body">
-                        
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                       </div>
                     </div>
-                
+
                   </div>
                 </div>
-         
-   
-   
 
-    
+
+
+
+
 
     <!-- Modal -->
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="application" id="application" aria-hidden="true">
@@ -190,7 +146,7 @@ table.table td i {
 			//Looping over columns is possible
 			//var colCount = table.columns()[0].length;
 			//for(var i=0; i < colCount; i++){			}
-			
+
 			//INSERT THE ROW
 			table.row.add(rowData).draw( false );
 		});
@@ -234,7 +190,7 @@ table.table td i {
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"  defer></script>
     <script src="assets/demo/datatables-demo.js"  defer></script>
 
-   
+
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js " crossorigin="anonymous"  defer></script>
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js " crossorigin="anonymous"  defer></script>
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js " crossorigin="anonymous"  defer></script>

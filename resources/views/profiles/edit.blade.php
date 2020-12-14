@@ -54,31 +54,36 @@
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0  ">
 
                     <div class="d-flex justify-content-center pta-2">
-                      <button href="#" id="previewBtn" class="btn btn-sm btn-info mr-4">Preview Image</button>
-                      <button href="#" id="uploadBtn" class="btn btn-sm btn-default float-right">Upload</button>
+
+                            <a href='/listings/{{$user->id}}/create' class="btn btn-sm btn-info mr-2">Create Advertisment</a>
+                            <a href='/profile/{{$user->id}}/edit' class="btn btn-sm btn-default float-right">Edit Profile</a>
+                            <a href='/profile/{{$user->id}}/alladverts'  class="btn btn-sm btn-default float-right">View Adverts</a>
+
                     </div>
+                    <div class="card-profile-stats d-flex justify-content-center ">
+                        <div>
+                        <span class="heading">{{$user->advertisments->count()}}</span>
+                          <span class="description">Advertisments</span>
+                        </div>
+                        <div>
+
+                        <span class="heading">{{$review}}</span>
+                          <span class="description">Reviews</span>
+                        </div>
+                        <div>
+                        <span class="heading">{{$user->gender}}</span>
+                          <span class="description">Gender</span>
+                        </div>
+                      </div>
                   </div>
-              <div class="row">
+              <div class="row pt-3">
                 <div class="col">
-                  <div class="card-profile-stats d-flex justify-content-center">
-                    <div>
-                      <span class="heading">22</span>
-                    <span class="description">{{$user->profile_photo}}</span>
-                    </div>
-                    <div>
-                      <span class="heading">10</span>
-                      <span class="description">Photos</span>
-                    </div>
-                    <div>
-                      <span class="heading">89</span>
-                      <span class="description">Comments</span>
-                    </div>
-                  </div>
+
                 </div>
               </div>
               <div class="text-center">
                 <h3>
-                  {{$user->first_name}} {{$user->last_name}}<span class="font-weight-light">, 27</span>
+                  {{$user->first_name}} {{$user->last_name}}<span class="font-weight-light"></span>
                 </h3>
                 <div class="h5 font-weight-300">
                   <i class="ni location_pin mr-2"></i>{{$user->address->streetline}}, {{$user->address->city}},{{$user->address->country}},{{$user->address->postOffice}}
@@ -93,8 +98,10 @@
                     <i class="ni education_hat mr-2"></i> Contact Number: {{$user->contacts->primary_number}}, {{$user->contacts->secondary_number}}
                   </div>
                 <hr class="my-4">
-                {{-- <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
-                <a href="#">Show more</a> --}}
+                <p>
+                    {{$user->aboutuser}}
+                </p>
+
                 <hr>
                 {{-- <img src="" alt="" class="preview"> --}}
                 <img src="" alt="" class="preview preview--rounded">
@@ -252,7 +259,7 @@
                 <div class="pl-lg-4">
                   <div class="form-group focused">
                     <label>About Me</label>
-                    <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+                    <textarea rows="4" class="form-control form-control-alternative" name="aboutuser" value=" {{$user->aboutuser}}" placeholder="A few words about you in 255 words or less..." ></textarea>
                   </div>
                 </div>
                 <div class="col-12 text-right">
@@ -267,74 +274,9 @@
     </div>
   </div>
 
-
-
-
-  {{-- <script src="https://www.codechief.org/plugin/croppie.js"></script> --}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
-  {{-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>  --}}
-
-  {{-- <script type="text/javascript" src="{{ asset('js/uploadimage.js')}}"></script> --}}
-
-  <script>
-
-
-$.ajaxSetup({
-headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-}
-});
-
-
-//
-// $('.preview').show().attr('src',1600246527.jpeg);
-$uploadCrop = $('#upload-demo').croppie({
-    enableExif: true,
-    viewport: {
-        width: 200,
-        height: 200,
-        type: 'circle'
-    },
-    boundary: {
-        width: 200,
-        height: 200
-    }
-});
-
-
-$('#upload').on('change', function () {
-	var reader = new FileReader();
-    reader.onload = function (e) {
-    	$uploadCrop.croppie('bind', {
-    		url: e.target.result
-    	}).then(function(){
-    		console.log('jQuery bind complete');
-    	});
-    }
-    reader.readAsDataURL(this.files[0]);
-});
-
-
-$('.upload-result').on('click', function (ev) {
-    // ev.preventDefault();
-	$uploadCrop.croppie('result', {
-		type: 'canvas',
-		size: 'viewport'
-	}).then(function (resp) {
-		$.ajax({
-			url: "/profile/storeimage",
-			type: "POST",
-			data: {"image":resp},
-			success: function (data) {
-                $('.card-profile')[0].reset();
-				html = '<img src="' + resp + '" />';
-				$("#upload-demo-i").html(html);
-			}
-		});
-	});
-});
- </script>
+  <script type="text/javascript" src="{{ asset('js/ajaxforprofile_edit.js')}}"></script>
 
 @endsection
 @section('javascript')

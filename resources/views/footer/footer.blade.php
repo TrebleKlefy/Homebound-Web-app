@@ -7,7 +7,7 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <div class="cta-text">
                             <h4>Find us</h4>
-                            <span>1010 Avenue, sw 54321</span>
+                            <span>1010 Avenue, Mandeville</span>
                         </div>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                         <i class="far fa-envelope-open"></i>
                         <div class="cta-text">
                             <h4>Mail us</h4>
-                            <span>mail@info.com</span>
+                            <span>homebound@info.com</span>
                         </div>
                     </div>
                 </div>
@@ -39,27 +39,25 @@
                             <a href="index.html"><img src="/img/LogoMakrBig.png" class="img-fluid flogo" alt="logo"></a>
                         </div>
                         <div class="footer-text">
-                            <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec tetur adipisicing
-                            elit,Lorem ipsum dolor sit amet.</p>
+                            <p>The place to find where next you call home, spreed the word, homebound is the solution for your home need</p>
                         </div>
-                        
+
                     </div>
-                    
+
                 </div>
-                
-                
+
+
                 <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
                     <div class="footer-widget">
                         <div class="footer-widget-heading">
                             <h3>Useful Links</h3>
                         </div>
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">about</a></li>
-                            <li><a href="#">services</a></li>
-                            <li><a href="#">portfolio</a></li>
-                            <li><a href="#">Contact</a></li>
-                        
+                            <li><a href="{{ route('/') }}">{{ __('Home') }}</a></li>
+                            <li><a href="{{ route('listings') }}">{{ __('listing') }}</a></li>
+                            <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
+
+
                         </ul>
                     </div>
                 </div>
@@ -80,7 +78,7 @@
                     </div>
                 </div>
             </div>
-     
+
             <section class="footer-social-section flex-rw">
                 <span class="footer-social-overlap footer-social-connect">
                 CONNECT <span class="footer-social-small">with</span> US
@@ -99,5 +97,5 @@
             </div>
         </div>
     </div>
-   
+
 </footer>

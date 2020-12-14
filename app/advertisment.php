@@ -26,5 +26,10 @@ class advertisment extends Model
       return $this->hasMany(Ad_Images::class,'id');
   }
 
+  public function Review()
+  {
+      return $this->hasMany(Reviews::class,'id');
+  }
+
 
 }

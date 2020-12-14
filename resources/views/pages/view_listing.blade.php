@@ -32,7 +32,7 @@
                         <img class="img" src="{{$imagead->images}}" />
                         </div>
                         @endforeach
-						
+
 					</div>
 					<div id="thumb" class="owl-carousel product-thumb">
                         @foreach($image as $imageview)
@@ -40,7 +40,7 @@
                         <img  src="{{$imageview->images}}" />
                         </div>
                         @endforeach
-					
+
 					</div>
 	        	</div>
 	        	<div class="col-md-6">
@@ -48,7 +48,7 @@
         				<div class="product-info">
                             {{-- @foreach($advert as $ad) --}}
                             <div class="product-name">{{$advert->street}} </div>
-                           
+
                             {{-- @endforeach --}}
 		        			<div class="reviews-counter">
 								<div class="rate">
@@ -74,14 +74,14 @@
                             <hr style="margin-top: 0rem !important; margin-bottom: 1rem !important; ">
 
                             <div class="row">
-                             
+
                                 <div class="col-12 widthy val-2">
                             <h6><span> <i class="fas fa-map-marker-alt"></i></span> {{ $advert->street }},</h6><h6 class="pl-1">{{$advert->apartment_number}},</h6>
                             <h6 class="pl-1">{{$advert->parish}}</h6>
                                 </div>
 
                                 {{-- <div class="col-4">
-                                    
+
                                 </div> --}}
                             </div>
                         </div>
@@ -91,40 +91,40 @@
                             <hr style="margin-top: 0rem !important; margin-bottom: 1rem !important; ">
 
                             <div class="row">
-                             
+
                                 <div class="col-12 widthy">
                             <h6><span> <i class="fas fa-phone"></span></i> {{ $advert->phone_number }}  </h6>   <h6 class="padl"><span> <i class="far fa-envelope-open"></span></i> {{ $advert->email}}</h6>
                                 </div>
 
                                 {{-- <div class="col-4">
-                                    
+
                                 </div> --}}
                             </div>
                         </div>
 
-                        <div> 
+                        <div>
                         <h4 class="pt-2">Amenities</h4>
                         <hr style="margin-top: 0rem !important; margin-bottom: 1rem !important; ">
-						<p> {{$advert->amenity}} </p> 
-					
+						<p> {{$advert->amenity}} </p>
+
 
                         <div class="row">
-                             
-                            
+
+
                             <div class="col-12 d-flex bg-primari text-white ">
-                              
-                                <h6 class="pt-1 text-white"><span> <i class="fas fa-bed text-white"></i></span> {{ $advert->rooms }}  </h6>  
+
+                                <h6 class="pt-1 text-white"><span> <i class="fas fa-bed text-white"></i></span> {{ $advert->rooms }}  </h6>
                                 <h6 class="pl-2 pt-1 text-white"><span> <i class="fas fa-utensils text-white"></span></i> {{ $advert->kitchen_rooms}}</h6>
                                 <h6 class="pl-2 pt-1 text-white"><span> <i class="fas fa-bath text-white"></span></i> {{ $advert->bath_rooms}}</h6>
-                            
+
                             </div>
-                        
+
                             {{-- <div class="col-4">
-                                
+
                             </div> --}}
                         </div>
                          </div>
-                       
+
                         <div class=" text-center">
 	        				<div class="btn-group">
                                 <div class="pr-1" >
@@ -135,10 +135,10 @@
                                 <a href="/profile/{{$user->id}}" class="round-black-btn">Owners's profile</a>
                             </div>
                             </div>
-                           
-                           
+
+
 	        			</div>
-                        
+
 	        		</div>
 	        	</div>
 	        </div>
@@ -148,17 +148,40 @@
 				    	<a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
 				  	</li>
 				  	<li class="nav-item">
-				    	<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews (0)</a>
+				    	<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews ({{$review->count()}})</a>
 				  	</li>
 				</ul>
 				<div class="tab-content" id="myTabContent">
 				  	<div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-				  		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
+                        {{$advert->description}}
 				  	</div>
 				  	<div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
-				  		<div class="review-heading">REVIEWS</div>
-				  		<p class="mb-20">There are no reviews yet.</p>
-				  		<form class="review-form">
+                          <div class="review-heading pb-3">REVIEWS</div>
+                          <hr>
+                          @if($review->count() == 0)
+                          <p class="mb-20">There are no reviews yet.</p>
+                          @else
+                          @foreach($review as $reviews)
+                          {{-- <div class="container"> --}}
+                        <div class="bg-md row">
+
+                    <div class="col flex-col">
+                        <h3 class="mt-1">{{$reviews->fullname}}</h3>
+                    </div>
+                    <div class="col flex-col">
+                        <h5 class="mt-1">{{$reviews->created_at->diffForHumans()}}</h5>
+                    </div>
+
+                     </div>
+                    <p class="mb-20">{{$reviews->message}}</p>
+
+                          {{-- </div> --}}
+                     <hr>
+                          @endforeach
+
+                          @endif
+                          <form class="review-form" action="/review" method="post">
+                            @csrf
 		        			<div class="form-group">
 			        			<label>Your rating</label>
 			        			<div class="reviews-counter">
@@ -178,27 +201,28 @@
 							</div>
 		        			<div class="form-group">
 			        			<label>Your message</label>
-			        			<textarea class="form-control" rows="10"></textarea>
+			        			<textarea class="form-control" name="message" rows="10"   maxlength="235" required></textarea>
 			        		</div>
 			        		<div class="row">
 				        		<div class="col-md-6">
 				        			<div class="form-group">
-					        			<input type="text" name="" class="form-control" placeholder="Name*">
+					        			<input type="text" name="fullname" class="form-control" required placeholder="Name*">
 					        		</div>
 					        	</div>
 				        		<div class="col-md-6">
 				        			<div class="form-group">
-					        			<input type="text" name="" class="form-control" placeholder="Email Id*">
+					        			<input type="text" name="email" class="form-control"  required placeholder="Email Id*">
 					        		</div>
-					        	</div>
+                                </div>
+                                <input type="hidden" name="advertisment_id" class="form-control"  required placeholder="Id*" value={{$advert->id}}>
 					        </div>
 					        <button class="round-black-btn">Submit Review</button>
 			        	</form>
 				  	</div>
 				</div>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 
@@ -206,7 +230,7 @@
 
 	<!-- Button trigger modal -->
 
-  
+
   <!-- Modal -->
   <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
@@ -218,11 +242,11 @@
 		  </button>
 		</div>
 		<div class="modal-body modal-bodi">
-	
-			
+
+
 		<div class="container">
 
-			
+
 			<div class="text-center gifi"  id="gifi">
 				<h1>Contact us</h1>
 				<p>Planning to visit Indonesia soon? Get insider tips on where to go, things to do and find best deals for your next adventure.</p>
@@ -246,11 +270,12 @@
 			<div id="success-msg"></div>
 		</div>
 		</div>
-		
-		
+
+
 	  </div>
 	</div>
   </div>
+</div>
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
@@ -258,12 +283,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-	
+
 
   {{-- @include('footer.footer') --}}
 <script type="text/javascript">
-    
- 
+
+
 	 var id = $('#id').val();
 	 $("form[name='contactus']").on('submit',function(event) {
 			event.preventDefault();

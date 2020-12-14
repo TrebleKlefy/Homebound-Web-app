@@ -2,7 +2,7 @@
 
 .title__logo{
     object-fit: contain;
-  
+
 }
 
 .greenline{
@@ -74,7 +74,7 @@
     text-align: left;
 }
 .jumbotron h1 {
-    
+
     margin: 0;
     padding-bottom: 16px;
     color: #fff;
@@ -102,7 +102,7 @@
     width: 100%;
     position: relative;
     overflow: hidden;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)),url("../img/living_room.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)),url("../img/living_roomsi.png");
     margin-top: -25px;
     margin-bottom: 0px;
     -webkit-background-size: cover;
@@ -118,7 +118,7 @@
 
 .input-group-append button{
     width: 150px;
-                          
+
     padding: 8px 15px 6px;
     font-weight: 600;
     font-size: 20px;
@@ -141,12 +141,12 @@
     position: relative;
     overflow: hidden;
     background-size: cover;
-  
+
     background-position: center center;
 }
 .section_1 h1{
     text-align:center;
-   
+
     margin-bottom: 100px;
 }
 
@@ -175,11 +175,11 @@ color:white;
 .section_1 .section_1__colorit{
     color:black;
     top: 0;
-    
+
 }
 p {
     font-family: "Muli-SemiBold";
-  
+
 }
 .material-icons.md-48 { font-size: 48px; }
 .material-icons.md-dark { color:#5c5559; }
@@ -235,8 +235,8 @@ p {
 .cs-services .cs-media{float:left;margin-right:20px;}
 .cs-services.top-center{ text-align:center; margin-bottom:25px;}
 .cs-services.top-center .cs-media{ width:100%; float:none; text-align:center; margin:0 0 20px 0;}
-.cs-services .cs-text{overflow:hidden;}	
-.cs-services.top-center .cs-text{overflow:hidden; padding:0 10px;}	
+.cs-services .cs-text{overflow:hidden;}
+.cs-services.top-center .cs-text{overflow:hidden; padding:0 10px;}
 .cs-text h6{
     font-weight: bold;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -284,7 +284,7 @@ p {
     .primary{
         border:0px solid #5b921a;
     }
-    
+
 
 
 }
@@ -438,7 +438,7 @@ p {
 .backgroundStyle{
     background-color: #28344a;
     margin-top: -9vh;
-    
+
     padding-bottom: 24vh;
 }
 .pt-55{
@@ -674,8 +674,8 @@ input:focus {
   .timeline-load-more-btn i {
     margin-right: 5px;
   }
-  
-  
+
+
   /* -----------------------------------------
      Dropdown
   ----------------------------------------- */
@@ -690,11 +690,11 @@ input:focus {
   .dropdown-menu > li a {
       padding: 10px 20px;
   }
-  
+
   /* -----------------------------------------
      Badge
   ----------------------------------------- */
-  
+
   .badge{
       padding: 3px 5px 2px;
       /* position: absolute; */

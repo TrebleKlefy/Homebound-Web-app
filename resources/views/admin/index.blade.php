@@ -87,10 +87,10 @@
             </div>
           </div>
         </div>
-    
+
 
         <div class="row">
-         
+
           <div class="col-lg-12 col-md-12">
             <div class="card ">
               <div class="card-header">
@@ -98,44 +98,44 @@
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                 
-                
- 
+
+
+
     <div class="pt-3" id="notifDiv"
     style="z-index:10000; display: none; background: green; font-weight: 450; width: 350px; position: fixed; top: 80%; right: 5%; color: white; padding: 5px 20px">
 </div>
-   
-       
-        <div id="get_data" class="pb-1">  
-     
-        </div>  
+
+
+        <div id="get_data" class="pb-1">
+
+        </div>
    </div>
-         
+
                 </div>
               </div>
             </div>
           </div>
         {{-- </div> --}}
 
-      
-        
 
 
 
 
-      
 
 
 
-   
-<script src="http://code.jquery.com/jquery-3.4.1.js"></script>   
-{{-- <script src="/js/custom.js"></script>   --}}
 
 
-      
+
+
+<script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+
+
+
+
 <script>
 
-  
+
 
 
     $(document).ready(function() {
@@ -149,7 +149,7 @@
                 // let adid =1;
                 thisRef.text('processing');
                 $.ajax({
-                  
+
                     url: "/listings/approved",
                     type:"POST",
                     headers: {
@@ -160,7 +160,7 @@
                       adid:adid,
                       // _token: _token
                     },
-                    
+
                 success:function(response) {
                 // var response = JSON.parse(response);
                 if(response.status == 'success') {
@@ -172,9 +172,9 @@
                     $('#notifDiv').text('Unable to deactivate employee');
                     setTimeout(() => {
                         $('#notifDiv').fadeOut();
-                    }, 3000);	
-                }		
-            }	
+                    }, 3000);
+                }
+            }
         });
    });
 });
@@ -192,7 +192,7 @@ function getUserList() {
             <thead>
                 <tr>
                 <th class="text-center">
-                        User Name 
+                        User Name
                         </th>
                         <th class="text-center">
                           Email
@@ -206,7 +206,7 @@ function getUserList() {
                         <th class="text-center">
                          Bulding
                         </th>
-                
+
                         <th class="text-center">
                         Pice
                         </th>
@@ -218,16 +218,16 @@ function getUserList() {
             <tbody>
         </tbody>
     </table>`);
-        
+
                     response.forEach(element => {
                         $('.userList tbody').append(`<tr>
-                  
+
                         <td class="text-center"><a href="/listingsextra/${element.id}">${element.first_name} ${element.last_name}</a></td>
                         <td class="text-center">${element.email}</td>
                         <td class="text-center">${element.contract}</td>
                         <td class="text-center">${element.buildingtype}</td>
                         <td class="text-center">${element.price}</td>
-			
+
                         <td class="text-center">
                           <input type="hidden" id="advid" name="adid" value="${element.id}">
                         <button class="btn btn-dark btn-sm active_deactive_user" id="${element.id}">${element.approved == 1 ? `BLOCk` : `Accept`}</button>
@@ -244,7 +244,7 @@ function showAlert(code, message) {
 	$('#notifDiv').fadeIn();
 	$('#notifDiv').text(message);
 	setTimeout(() =>{
-		$('#notifDiv').fadeOut();	
+		$('#notifDiv').fadeOut();
 	}, 3000)
 }
 
@@ -254,7 +254,7 @@ $(document).ready(function() {
 
     });
 
-    
+
 </script>
 
 @endsection

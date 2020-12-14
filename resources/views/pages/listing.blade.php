@@ -14,7 +14,7 @@
   <div class="row align-items-center justify-content-center ">
     <div class="col-md-7 text-center pt-5 mt-5 " >
       <h1 class="text-white">Apartments</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      <p>It only takes a click to find your new home, search with us.</p>
 
 
 
@@ -120,19 +120,17 @@
 
 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 
-{{-- @include('layouts.cards') --}}
-{{-- <div class="container">
-  <div class="row"> --}}
 
 <div class="site-secion pt-4">
   <div class="container">
-    <!-- <div class="row">
-      <div class="site-section-heading text-center mb-5 w-border col-md-6 mx-auto">
-        <h2 class="mb-5">Browse Apartments</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, fugit nam obcaecati fuga itaque deserunt
-          officia, error reiciendis ab quod?</p>
-      </div>
-    </div> -->
+
+        @if(!empty($message))
+        <div class="alert alert-danger pb-2 text-center">
+            {{ $message }}
+        </div>
+    @endif
+
+
     <div class="row">
       @foreach($advertisments as $add)
       <div class="col-md-6 col-lg-3 mb-5" data-aos="fade-up" data-aos-delay="100">
@@ -140,7 +138,7 @@
           <div class="image" style="background-image: url('{{$add->images}}');"></div>
           <div class="unit-9-content">
             <h2>{{$add->name}}</h2>
-            <span>${{$add->price}}/night</span>
+            <span>${{$add->price}}/Monthly</span>
             <!-- <span>with Wendy Matos</span> -->
           </div>
         </a>
@@ -153,59 +151,6 @@
   </div>
 </div>
 
-
-
-{{--
-
-@foreach($advertisments as $add)
-
-
-<div class="r_card ">
-  <div class="r_car">
-      <div class="r_ca">
-
-<div class="imagecontainer">
-  <div class="r_card_header" role="img" style=" background: url('http://www.2oceansvibe.com/wp-content/uploads/2011/07/man4.jpg') 50% 0% no-repeat;" >
-  </div>
-</div>
-<div class="contentcontainer">
-  <div class="r_card_content">
-      <div class="adress">
-          <i class="fa fa-map-marker" aria-hidden="true"></i>
-          {{$add->street}}
-
-      </div>
-      <div class="text_info">
-        {{$add->description}}
-          <div class="text_info_shade"></div>
-      </div>
-  </div>
-  <div class="price_info">
-      <span class="price_w">Price:</span>
-      <span class="price_v">$ {{$add->price}}</span>
-  </div>
-  <div class="r_card_footer">
-      <div class="icon area pr-2">
-      {{$add->kitchen_rooms}} <i class="fas fa-utensils"></i>
-
-      </div>
-
-      <div class="icon bath pr-1">
-        {{$add->bath_rooms}} <i class="fa fa-bath" aria-hidden="true"></i>
-      </div>
-       <div class="icon area ">
-        {{$add->rooms}} <i class="fa fa-bed" aria-hidden="true"></i>
-      </div>
-  </div>
-</div>
-</div>
-</div>
-</div>
-
-@endforeach
-{{$advertisments->links()}} --}}
-  {{-- </div>
-</div> --}}
 
 <script>
   $(document).ready(function(){

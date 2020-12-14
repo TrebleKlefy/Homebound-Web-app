@@ -5,19 +5,11 @@
 <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 <link href="{{ asset('css/paymentform.css') }}" rel="stylesheet">
 
-{{-- <link href="{{ asset('css/profileinput.css') }}" rel="stylesheet"> --}}
-{{-- <link rel="stylesheet" href="{{ asset('css/image-uploader.css') }}"> --}}
 
 @endsection
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
  <script type="text/javascript" src="{{ asset('js/image-uploader.js')}}"></script>
- {{-- <script type="text/javascript" src="{{ asset('js/paymentform.js')}}"></script> --}}
 
- {{-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> --}}
-
-  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script> --}}
-
-  {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> --}}
 
 
   <style type="text/css">
@@ -52,6 +44,8 @@
       <p class="text-white mt-0 mb-5">This is your create Advertisment pahe. You can create ad's here and upload up to 10 HD images.</p>
     </div>
 
+
+
 </div>
 </div>
 
@@ -66,6 +60,16 @@
         <div class="row align-items-center">
           <div class="col-8">
             <h3 class="mb-0">My account</h3>
+            @if(!empty($message))
+            <div class="alert alert-danger pb-2 text-center">
+                {{ $message }}
+            </div>
+        @endif
+        @if(session()->has('message'))
+        <div class="alert alert-success pb-2">
+            {{ session()->get('message') }}
+        </div>
+    @endif
           </div>
           <div class="col-4 text-right">
             <a href="#!" class="btn btn-sm btn-primary">Settings</a>
@@ -86,7 +90,7 @@
                     </div><!-- /.form-group -->
 
                     <div class="form-group">
-                        <textarea class="form-control" maxlength="255" placeholder="Listing Description"  name="description" rows="8"></textarea>
+                        <textarea class="form-control" maxlength="235" placeholder="Listing Description"  name="description" rows="8"></textarea>
                     </div><!-- /.form-group -->
                 </div><!-- /.box -->
 
@@ -165,7 +169,7 @@
                     </ul>
                     <input type="hidden" class="adid" name="userid" id="adid" value="">
                     <input type="hidden" class="payment" name="payments" id="payment" value="">
-                    {{-- <input type="hidden" class="userid" name="userid" id="userid" value=""> --}}
+
                 </div>
 
               </div>
@@ -257,16 +261,6 @@
                           <input name="images" class="form-control form-control-alternative" id="file" type="file">
                         </div>
                       </div>
-                            {{-- <div class="input-field">
-                                <input type="text" name="photo_name" id="name-1">
-                                <label for="name-1" placeholder="Give photos a name"></label>
-                            </div>
-
-                            <div class="input-field mb-3">
-                                <input type="text" name="photo_description" id="description-1">
-                                <label for="description-1" placeholder="Description"></label>
-                            </div> --}}
-
 
                             <div class="form-group">
                             <div id="imageUpload" class="dz-default dz-message dropzoneDragArea stylezone mb-4">
@@ -286,6 +280,11 @@
                       </ul>
                     </div>
                       @endif
+            @if(session()->has('message'))
+                <div class="alert alert-success pb-2">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
 
                       <button  class="btn btn-primary btn-block " type ="button" id ="subi" >Upload & Submit</button>
                 </div><!-- /.box -->
@@ -361,7 +360,6 @@
                                               <div class="form-group mb-4"> <label data-toggle="tooltip" title="Three digit CV code on the back of your card">
                                                       <h6>CVV <i class="fa fa-question-circle d-inline"></i></h6>
                                                   </label> <input type="text" name="ccv"required class="form-control">
-                                                  {{-- <input type="hidden" name="amount" value="500.00"> --}}
                                                   <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                                                   <input type="hidden" name="payment_id">
                                                   <input type="hidden" name="advert_id">
@@ -422,12 +420,10 @@
 
 
 
-        {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> --}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
         <script src="http://malsup.github.com/jquery.form.js"></script>
-        {{-- <script type="text/javascript" src="{{ asset('js/imageview.js')}}"></script> --}}
 
 
 <script>
@@ -530,9 +526,13 @@ $("#subi").click(function(){
 
 	    this.on("success", function (file, response) {
             //reset the form
-            $('#form')[0].reset();
-            //reset dropzone
+            // window.location.reload();
+
             $('.dropzone-previews').empty();
+            window.location.reload();
+            //reset dropzone
+
+            // window.location.reload();
         });
 
         this.on("queuecomplete", function () {
@@ -582,32 +582,6 @@ $("#subi").click(function(){
 
 });
 
-// function payment(id){
-//   $(document).ready(function(){
-
-//     console.log(payment_id);
-//     console.log(id);
-//     $.ajax({
-// 	    		type: 'PATCH',
-//           url: `/listings/${payment_id}/paymentupdate`,
-//         headers: {
-//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//         },
-// 	    	data:  {advertisment_id: id},
-// 	    		success: function(result){
-// 	    			if(result.status == "success"){
-// 	    				// fetch the useid
-
-//              //process the queue
-//               alert(result.status);
-
-// 	    			}else{
-// 	    				console.log("error");
-// 	    			}
-// 	    		}
-// 	    	});
-//   })
-// }
   </script>
 
 @endsection

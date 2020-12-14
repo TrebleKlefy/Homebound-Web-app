@@ -8,11 +8,11 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css">
 
 
-      
+
         <div class="row">
           <div class="col-md-8">
             @if($errors->any())
-              <div class="alert alert-danger"> 
+              <div class="alert alert-danger">
                 <ul>
                     @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -34,36 +34,28 @@
                   <div class="col-md-12 text-center">
                       <div id="upload-demo"></div>
                   </div>
-                    
-                      {{-- <strong>Select Image:</strong>
-                      <br/>
-                      <input type="file" id="upload">
-                      <br/> --}}
-                      {{-- <button class="btn btn-success upload-result">Upload Image</button> --}}
+
+
                       <div class="col-12 text-right">
-                       
-                     
-                        <div class="d-flex justify-content-center "> 
+
+
+                        <div class="d-flex justify-content-center ">
                       <div class="pr-1">
                           <div class="fileUpload  ">
                               <input type="file" id="upload" class="upload">
                               <label for="file" class="pt-1 ">Choose an Image</label>
                           </div>
-                      </div> 
+                      </div>
                           <button href="#" id="uploadBtn" class="btn btn-sm btn-default float-right upload-result ">Upload Image</button>
                         </div>
                       </div>
-                      <div class="d-flex  col-md-12 justify-content-center pb-3 "> 
-                        
-                          {{-- <button href="#" id="previewBtn" class="btn btn-sm btn-info mr-4">Select Image --}}
-                         
-                          {{-- </button> --}}
-                          {{-- <button href="#"  class="btn btn-sm btn-default float-right upload-result">Upload Image</button> --}}
+                      <div class="d-flex  col-md-12 justify-content-center pb-3 ">
+
                       </div>
-                    
+
               </div>
                 <form action="/profile/{{$user->id}}" method="post">
-              
+
                     @method('PATCH'){{--Patch request--}}
                     @csrf
                   <div class="row">
@@ -141,7 +133,7 @@
                         <input type="text" class="form-control" name="secondary_number" placeholder="(876) 393-5612" value="{{$user->contacts->secondary_number}}" >
                       </div>
                     </div>
-                   
+
                   </div>
                   <div class="row">
                     <div class="col-md-8">
@@ -151,14 +143,14 @@
                       </div>
                     </div>
                   </div>
-                
+
               </div>
               <div class="card-footer">
                 <button type="submit" class="btn btn-fill btn-primary">Save</button>
               </div>
             </form>
             </div>
-           
+
           </div>
           <div class="col-md-4">
             <div class="card card-user">
@@ -171,7 +163,7 @@
                     <div class="block block-four"></div>
                     <a href="javascript:void(0)">
                       @if($user->profile_photo != null)
-                      <img  src="/uploads/images/{{$user->profile_photo}}"  class="avatar">                 
+                      <img  src="/uploads/images/{{$user->profile_photo}}"  class="avatar">
                         @else
                         <img src="https://demos.creative-tim.com/argon-dashboard/assets/img/theme/team-4.jpg" class="avatar">
                         @endif
@@ -202,34 +194,33 @@
             </div>
           </div>
         </div>
-    
-    
-   
- 
- 
 
 
 
 
-   {{-- <script src="https://www.codechief.org/plugin/croppie.js"></script> --}}
+
+
+
+
+
+
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
-   {{-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>  --}}
-  
-   {{-- <script type="text/javascript" src="{{ asset('js/uploadimage.js')}}"></script> --}}
- 
+
+
+
+
    <script>
- 
- 
+
+
  $.ajaxSetup({
  headers: {
      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
  }
  });
- 
- 
- // 
- // $('.preview').show().attr('src',1600246527.jpeg);  
+
+
+ //
  $uploadCrop = $('#upload-demo').croppie({
      enableExif: true,
      viewport: {
@@ -242,9 +233,9 @@
          height: 200
      }
  });
- 
- 
- $('#upload').on('change', function () { 
+
+
+ $('#upload').on('change', function () {
    var reader = new FileReader();
      reader.onload = function (e) {
        $uploadCrop.croppie('bind', {
@@ -255,10 +246,10 @@
      }
      reader.readAsDataURL(this.files[0]);
  });
- 
- 
+
+
  $('.upload-result').on('click', function (ev) {
-     // ev.preventDefault();
+
    $uploadCrop.croppie('result', {
      type: 'canvas',
      size: 'viewport'

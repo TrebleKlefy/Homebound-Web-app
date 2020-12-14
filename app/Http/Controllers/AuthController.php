@@ -5,6 +5,12 @@ use App\Http\Requests\RegisterAuthRequest;
 use App\User;
 use Illuminate\Http\Request;
 use  JWTAuth;
+use App\contacts;
+use App\advertisment;
+use App\Ad_Images;
+use App\Images;
+use App\payment;
+use App\Reviews;
 use Tymon\JWTAuth\Exceptions\JWTException;
 class  AuthController extends  Controller {
     public  $loginAfterSignUp = true;
@@ -38,6 +44,7 @@ class  AuthController extends  Controller {
         // get the user
         $user = JWTAuth::user();
         $notifications = array();
+        $advert = Advertisment::where('user_id',$user->id)->get();
         foreach ($user->unreadNotifications as $notification) {
             array_push($notifications,$notification);
         }
@@ -47,6 +54,7 @@ class  AuthController extends  Controller {
             'token' => $jwt_token,
             'user' => $user,
             'notification' =>$notifications,
+            'advert' => $advert,
         ]);
     }
 

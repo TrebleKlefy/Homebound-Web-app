@@ -6,6 +6,7 @@ use App\address;
 use App\contacts;
 use App\advertisment;
 use App\Ad_Images;
+use App\Reviews;
 use App\Images;
 use App\payment;
 use Notification;
@@ -35,31 +36,59 @@ class ListingController extends Controller
 
 
     }
+
+    //for viewing more details on the listing
     public function indexs( $id){
 
         $advert = Advertisment::findOrFail($id);
         $user = User::findOrFail($advert->user_id);
         $image = Ad_Images::where('advertisment_id',$id)->get();
         $amenities = explode(',', $advert->amenity);
-        return view('pages.view_listing',compact('advert','user','image','amenities'));
+        $review = Reviews::where('advertisment_id',$id)->get();
+        return view('pages.view_listing',compact('advert','user','image','amenities','review'));
 
     }
 
+    // filter listing from the listing page
     public function filter(Request $req){
         $search = $req->search;
         $price1 = $req->price1;
         $price2 = $req->price2;
-
-        $advertisments = Advertisment::with('user')->where('street',$search)->paginate(2);
+         $count =0;
+        $advertisments = Advertisment::with('user')->where('street',$search)->where('approved',true)->paginate(8);
     if($req->search != null ){
-        $advertisments = Advertisment::with('user')->where('street',$search)->paginate(2);
+        $advertisments = Advertisment::with('user')->where('street',$search)->where('approved',true)->paginate(8);
     }
     if($req->price1 != null && $req->price2 != null && $req->search !=null){
-        $advertisments = Advertisment::with('user')->whereBetween('price', [$price1, $price2])->orWhere('street' , $search)->paginate(2);
+        $advertisments = Advertisment::with('user')->whereBetween('price', [$price1, $price2])->orWhere('street' , $search)->where('approved',true)->paginate(8);
     }
-        return view('pages.listing',compact('advertisments'));
+    foreach ($advertisments as $ads){
+        $count++;
     }
 
+    if($count>0){
+    return view('pages.listing',compact('advertisments'));
+    }else{
+        return view('pages.listing')->with('advertisments', $advertisments)->with('message', 'No data Found please try searching for another!');
+    }
+    }
+
+    // filter listing from the homepage
+    public function searcFilter(Request $req)
+    {
+        $count=0;
+        $advertisments = Advertisment::with('user')->where('street',$req->search)->where('approved',true)->paginate(10);
+        foreach ($advertisments as $ads){
+            $count++;
+        }
+        if($count>0){
+        return view('pages.listing',compact('advertisments'));
+        }else{
+            return view('pages.listing')->with('advertisments', $advertisments)->with('message', 'No data Found please try searching for another!');
+        }
+    }
+
+    //create an listing
     public function create(){
         if(auth()->user()){
             $user = auth()->user();
@@ -70,6 +99,7 @@ class ListingController extends Controller
 
     }
 
+    // this is used to edi tht amenities
     public function edit_list($id){
         $user = auth()->user();
         $advert = Advertisment::findOrFail($id);
@@ -78,6 +108,7 @@ class ListingController extends Controller
         return view('listing.edit_listing',compact('user','advert','image','amenities'));
     }
 
+    //delete an add
     public function destroy($id)
     {
         $advert = Advertisment::findOrFail($id);
@@ -88,13 +119,12 @@ class ListingController extends Controller
     public function payment(Request $req)
     {
         payment::create($this->validateRequest());
-       $this->sendNotification();
+       $this->sendNotification($req->amount);
         $pay_id = DB::getPdo()->lastInsertId();
         return response()->json(['status'=>"success",'pay_id'=>$pay_id,'amount'=>$req->amount]);
     }
 
-    // stores the application then send a email copy to the admin and maybe user??
-
+    // stores the application then send a email??
     protected function store(Request $req )
     {
         $feature = '0';
@@ -131,7 +161,6 @@ class ListingController extends Controller
     }
 
 try{
-
 
     auth()->user()->advertisments()->create([
 
@@ -177,7 +206,7 @@ try{
         $imageresized->save();
     }
 
-
+//used to store image to a set location. this is caled by other functions
     protected function imageStore(Request $req, $imageName ){
 
 
@@ -190,6 +219,7 @@ try{
 
     }
 
+    // store an a image or images for listing
    protected function storeImage(Request $req)
     {
         if($req->file('images')){
@@ -212,9 +242,15 @@ try{
 
             ]);
         $this->AvertImageResize($adid);
-        return response()->json(['status'=>"success",'imgdata'=>$original_name,'userid'=>$adid, '$imageName'=>$imageName]);
+        return redirect()->back()->with('message', 'Successfull update!');
         }
     }
+
+    public function returning()
+    {
+        return redirect()->back()->with('message', 'Successfull update!');
+    }
+
 
 
     private function AvertImageResize($id)
@@ -250,7 +286,7 @@ try{
     }
 
 
-
+// returns all advertisements
     public function allAdvertisments(){
         $userdetail =DB::table('users')
         ->join('advertisments', function ($join) {
@@ -262,6 +298,7 @@ try{
       return response()->json($userdetail);
     }
 
+    // approve advertisements for display by admin
     public function approve_ad(Request $request)
     {
         $messages;
@@ -294,6 +331,7 @@ try{
     }
 
 
+    // edit listings
     public function store_edit(Request $req, $id){
         $this->validate($req, [
             'rooms' => ['required', 'string', 'max:255'],
@@ -340,18 +378,17 @@ try{
     'apartment_number' =>  $req->apartment_number,
     'description' => $req->description,
     'street' => $req->street,
-    // 'photo_name' => $req->photo_name,
-    // 'photo_description' =>$req->photo_description,
+
     'price' => $req->price,
     'email'=> $req->email,
     'buildingtype' => $req->buildingtype,
     'contract' => $req->contract,
     'phone_number' => $req->phone_number,
-    // $advertisments->user_id = Auth::user()->id;
+
     'images' => $imageName,
     'amenity' => implode(",",$req->amenity),
     ]);
-    // $advertisments->save();
+
 
 
 
@@ -378,7 +415,7 @@ try{
 	}
 
   return response()->json(['datas'=>$data,'imageloca'=>$imagelocation]);
-        // return response()->json($image);
+
     }
 
 
@@ -401,15 +438,15 @@ try{
     }
 
 
-    public function sendNotification()
+    public function sendNotification($amount)
     {
         $user = auth()->user();
 
         $details = [
             'name' => 'HomeBound',
             'greeting' => 'Hey '.auth()->user()->first_name.' Your payment has been made',
-            'body' => 'Thank you for your payment of $500 by card number 1111111111',
-            'thanks' => 'Thank you for using ItSolutionStuff.com tuto!',
+            'body' => 'Thank you for your payment of $  '. $amount,
+            'thanks' => 'Thank you for making it HomeBound.com!',
             'actionText' => 'View My Site',
             'actionURL' => url('/'),
         ];
@@ -419,6 +456,11 @@ try{
 
     }
 
+    public function userReview(){
+        $review = new Advertisment;
+        $review->Review()->create($this->validateReview());
+        return redirect()->back();
+    }
 
     private function validateRequest(){
         return request()->validate([
@@ -428,6 +470,16 @@ try{
             'amount' =>'required',
             'experation_date' =>'required',
             'user_id'=>'required',
+
+        ]);
+    }
+
+    private function validateReview(){
+        return request()->validate([
+            'message' => 'required|min:5',
+            'fullname' => 'required',
+            'email' =>'required',
+            'advertisment_id'=>'required',
 
         ]);
     }

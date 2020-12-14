@@ -3,7 +3,7 @@
 @section('content')
 <link href="{{ asset('css/emailread.css') }}" rel="stylesheet">
 <style>
-    
+
 table.table td:last-child {
     width: 130px;
 }
@@ -24,8 +24,8 @@ table.table td button.delete {
 }
 table.table td i {
     font-size: 19px;
-   
-}    
+
+}
     </style>
 
 <div class="mask opacity-8 bg-gradient-default">
@@ -36,7 +36,7 @@ table.table td i {
         </ol>
         <div class="p-5 bg-white" style="border-radius: 0.5%;">
 
-       
+
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
             <tr>
@@ -45,7 +45,7 @@ table.table td i {
                 <th>Status</th>
                 <th>Phone Number</th>
                 <th>Address</th>
-           
+
                 <th>Action</th>
             </tr>
             </thead>
@@ -56,7 +56,7 @@ table.table td i {
                 <th>Status</th>
                 <th>Phone Number</th>
                 <th>Address</th>
-               
+
                 <th>Action</th>
 
             </tr>
@@ -66,20 +66,17 @@ table.table td i {
 
             @forelse ($advertisments as $adverts)
                 <tr>
-
-                    <td> {{  $adverts->street}}, Apt#:{{  $adverts->apartment_number}}, {{  $adverts->parish}}</td>
-                     
+                    <td>{{$adverts->name}} </td>
                     <td>{{  $adverts->email}}</td>
-
                     @if($adverts->approved)
                     <td><div class = " alert-success text-center"><p>Active</p></div></td>
                     @else
                     <td><div class = "alert-danger text-center"><p>Disabled</p></div></td>
                     @endif
                     {{-- <td>{{  $adverts->phone_number}}, {{  $adverts->phone_number2}}</td> --}}
-                    <td> {{$adverts->street}}, 
+                    <td> {{$adverts->phone_number}},
                         </td>
-                    <td>{</td>
+                    <td>{{  $adverts->street}}, Apt#:{{  $adverts->apartment_number}}, {{  $adverts->parish}}</td>
                     <td>  <a href="/listingsextra/{{$adverts->id}}" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
                         <a href="/listings/{{$adverts->id}}/edit"  class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                         <a>
@@ -105,7 +102,7 @@ table.table td i {
 </div>
     </div>
 
-  
+
 
 
 
@@ -131,10 +128,10 @@ table.table td i {
     //             processData:false,
 	//     		success: function(result){
 	//     			if(result.status == "success"){
-	//     				// fetch the useid 
+	//     				// fetch the useid
 	//     				var userid = result.ad_id;
     //         $("#adid").val(userid); // inseting userid into hidden input field
-          
+
     //                     //process the queue
     //                         console.log(userid);
 	//     				myDropzone.processQueue();

@@ -18,7 +18,7 @@
 
 <head>
 
- 
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-  
+
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
    <!--     Fonts and icons     -->
  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
@@ -162,7 +162,7 @@
                   <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                       <div class="photo">
-                      <img src="/uploads/images/{{auth::user()->profile_photo}}" alt="Profile Photo">
+                      <img src="{{auth::user()->profile_photo}}" alt="Profile Photo">
                       </div>
                       <b class="caret d-none d-lg-block d-xl-block"></b>
                       <p class="d-lg-none">
@@ -206,18 +206,18 @@
           </div>
           <!-- End Navbar -->
           <div class="content">
-            
+
               <main>
                 @yield('content')
             </main>
             </div>
-    
-          
-            
-    
-           
-    
-          
+
+
+
+
+
+
+
           <footer class="footer">
             <div class="container-fluid">
               <ul class="nav">
@@ -290,7 +290,7 @@
         </div>
       </div>
 
-     
+
   <!--   Core JS Files   -->
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
   <!--   Core JS Files   -->
@@ -299,7 +299,7 @@
   <script type="text/javascript" src="{{ asset('js/admin/core/bootstrap.min.js')}}"></script>
   <script type="text/javascript" src="{{ asset('js/admin/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
 
-  
+
   <!--  Google Maps Plugin    -->
   <!-- Place this tag in your head or just before your close body tag. -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
